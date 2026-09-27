@@ -1,6 +1,9 @@
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ImpactSection } from "@/components/sections/ImpactSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
+import { ProjectsSection } from "@/components/sections/ProjectsSection";
+import { ProcessSection } from "@/components/sections/ProcessSection";
+import { WhyChooseSection } from "@/components/sections/WhyChooseSection";
 
 export default function Home() {
   return (
@@ -18,6 +21,15 @@ export default function Home() {
 
       {/* SECTION 3: DYNAMIC SERVICES DIRECTORY */}
       <ServicesSection />
+
+      {/* SECTION 4: OUR PROJECTS (PORTFOLIO GALLERY) */}
+      <ProjectsSection />
+
+      {/* SECTION 5: WHY CHOOSE ME (FOCUSED ON DESIGN THAT DELIVERS RESULTS) */}
+      <WhyChooseSection />
+
+      {/* SECTION 6: DESIGN PROCESS THAT WORKS (METHODOLOGY) */}
+      <ProcessSection />
     </main>
   );
 }
