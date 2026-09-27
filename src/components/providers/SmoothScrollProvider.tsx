@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 interface SmoothScrollProviderProps {
   children: ReactNode;
@@ -11,7 +11,7 @@ interface SmoothScrollProviderProps {
  * with a silky momentum inertia curve, progress tracking, and in-view triggers.
  */
 export default function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const progressBarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Respect user's reduced-motion preference
@@ -26,16 +26,21 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
         const LocomotiveScroll = (await import("locomotive-scroll")).default;
         locomotiveScrollInstance = new LocomotiveScroll({
           lenisOptions: {
-            lerp: 0.06, // Silky weighted momentum inertia
-            duration: 1.35,
+            lerp: 0.075, // Silky, stable, luxury inertia glide without micro-vibrations
             smoothWheel: true,
             wheelMultiplier: 1.15,
-            touchMultiplier: 1.8,
-            infinite: false,
+            touchMultiplier: 1.5,
+            syncTouch: false, // Disables touch/wheel conflict that causes shaking/jittering
+            autoResize: true,
           },
           scrollCallback: (scrollValues: any) => {
-            if (scrollValues && typeof scrollValues.progress === "number") {
-              setScrollProgress(scrollValues.progress);
+            // Direct DOM update on GPU compositor (Zero React re-renders during scroll)
+            if (
+              progressBarRef.current &&
+              scrollValues &&
+              typeof scrollValues.progress === "number"
+            ) {
+              progressBarRef.current.style.transform = `scaleX(${scrollValues.progress})`;
             }
           },
         });
@@ -55,13 +60,14 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
 
   return (
     <>
-      {/* Top Glowing Scroll Progress Indicator */}
+      {/* Top Glowing Scroll Progress Indicator - 0 re-render hardware transform */}
       <div
+        ref={progressBarRef}
         aria-hidden="true"
         className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-orange-600 via-amber-500 to-orange-400 z-50 origin-left pointer-events-none shadow-[0_0_10px_rgba(234,88,12,0.6)]"
         style={{
-          transform: `scaleX(${scrollProgress})`,
-          transition: "transform 100ms cubic-bezier(0.16, 1, 0.3, 1)",
+          transform: "scaleX(0)",
+          willChange: "transform",
         }}
       />
       {children}

@@ -76,7 +76,7 @@ export function ImpactSection() {
           <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16 sm:mb-20">
             <div
               data-scroll
-              data-scroll-speed="0.05"
+              data-scroll-speed="0.06"
               className="lg:col-span-8"
             >
               <SlideInView direction="up" delay={0.05}>
@@ -94,7 +94,7 @@ export function ImpactSection() {
             {/* Subtle 8-point Starburst Icon with counter-rotation/parallax */}
             <div
               data-scroll
-              data-scroll-speed="-0.08"
+              data-scroll-speed="-0.14"
               className="hidden lg:flex lg:col-span-1 justify-center pt-8"
             >
               <svg className="w-14 h-14 text-neutral-200" viewBox="0 0 24 24" fill="currentColor">
@@ -105,7 +105,7 @@ export function ImpactSection() {
             {/* Top-Right Portrait Card (Flies in from off-screen right) */}
             <div
               data-scroll
-              data-scroll-speed="-0.04"
+              data-scroll-speed="-0.08"
               className="lg:col-span-3 flex justify-start lg:justify-end"
             >
               <SlideInView direction="right" delay={0.15} className="w-fit">
@@ -127,7 +127,7 @@ export function ImpactSection() {
             {/* Left: Portrait with Corner Crop Ticks [ ] (Flies in from off-screen left) */}
             <div
               data-scroll
-              data-scroll-speed="0.04"
+              data-scroll-speed="0.08"
               className="lg:col-span-5 flex justify-center lg:justify-start"
             >
               <SlideInView direction="left" delay={0.1} className="w-fit">

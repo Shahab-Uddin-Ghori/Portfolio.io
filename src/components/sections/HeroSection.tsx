@@ -35,7 +35,7 @@ export function HeroSection() {
       <div
         aria-hidden="true"
         data-scroll
-        data-scroll-speed="-0.22"
+        data-scroll-speed="-0.2"
         className="absolute inset-x-0 top-[6%] sm:top-[7%] flex justify-center items-start pointer-events-none z-10 overflow-hidden"
       >
         <span className="watermark-text text-[18vw] xl:text-[16.5vw] leading-none whitespace-nowrap anim-hero-watermark">
@@ -88,7 +88,7 @@ export function HeroSection() {
       {/* Layer 5: Top-Right Floating Polaroid Card with noticeable counter-float */}
       <div
         data-scroll
-        data-scroll-speed="-0.14"
+        data-scroll-speed="-0.16"
         className="hidden sm:block absolute right-8 sm:right-12 lg:right-14 top-[24%] sm:top-[26%] z-30 pointer-events-auto"
       >
         <div className="anim-hero-badge">
@@ -116,7 +116,7 @@ export function HeroSection() {
         {/* Bottom-Right: Floating "Let's Talk" Card */}
         <div
           data-scroll
-          data-scroll-speed="0.1"
+          data-scroll-speed="0.12"
           className="pointer-events-auto self-end md:self-auto anim-hero-contact"
         >
           <ContactCard

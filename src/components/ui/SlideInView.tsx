@@ -53,7 +53,7 @@ export function SlideInView({
       return;
     }
 
-    // 2. IntersectionObserver on the stationary layout trigger
+    // 2. IntersectionObserver on the stationary layout trigger (compositor-driven, 0 layout reflows)
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -69,20 +69,8 @@ export function SlideInView({
 
     observer.observe(currentEl);
 
-    // 3. Robust fallback listener for smooth scroll libraries (Lenis / Locomotive)
-    const handleScrollCheck = () => {
-      if (!currentEl) return;
-      const r = currentEl.getBoundingClientRect();
-      if (r.top < window.innerHeight + 80) {
-        setHasAnimated(true);
-        window.removeEventListener("scroll", handleScrollCheck);
-      }
-    };
-    window.addEventListener("scroll", handleScrollCheck, { passive: true });
-
     return () => {
       observer.disconnect();
-      window.removeEventListener("scroll", handleScrollCheck);
     };
   }, [threshold]);
 
