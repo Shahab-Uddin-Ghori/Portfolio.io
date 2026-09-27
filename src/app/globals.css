@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b0604;
+  --foreground: #ededed;
+  --font-inter: "Inter", sans-serif;
+  --font-syne: "Syne", sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-syne: var(--font-syne);
+}
+
+/* Custom font utility */
+.font-syne {
+  font-family: var(--font-syne), "Syne", sans-serif;
+}
+
+.font-sans {
+  font-family: var(--font-inter), "Inter", sans-serif;
+}
+
+/* Deep Vermilion Hero Radial Canvas */
+.hero-canvas {
+  background: radial-gradient(circle at 50% 36%, #ea4609 0%, #db3802 46%, #941f00 100%);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.8), inset 0 0 80px rgba(0, 0, 0, 0.28);
+}
+
+/* Architectural Grid Line Overlays */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 25% 33.333%;
+}
+
+/* Giant Background Watermark Text */
+.watermark-text {
+  font-family: var(--font-syne), "Syne", sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: rgba(110, 25, 0, 0.35);
+  line-height: 0.8;
+  pointer-events: none;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Foreground Massive Brand Name */
+.foreground-name {
+  font-family: var(--font-syne), "Syne", sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 0.86;
+  color: #ffffff;
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Bottom fade for person portrait to blend seamlessly into orange background */
+.portrait-mask {
+  mask-image: linear-gradient(to bottom, black 70%, transparent 98%);
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 98%);
+}
+
+/* Floating Card subtle hover physics */
+.floating-card {
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.floating-card:hover {
+  transform: translateY(-4px);
+}
