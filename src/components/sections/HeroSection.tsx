@@ -16,7 +16,7 @@ export function HeroSection() {
     <section
       id="home"
       aria-label="Hero Section"
-      className="relative w-full max-w-[1440px] h-[92vh] min-h-[650px] max-h-[940px] rounded-[24px] sm:rounded-[36px] overflow-hidden hero-canvas border border-white/10 flex flex-col justify-between mx-auto"
+      className="relative w-[97.5vw] h-[95vh] max-w-[97.5vw] max-h-[95vh] rounded-[28px] sm:rounded-[36px] overflow-hidden hero-canvas border border-white/15 flex flex-col justify-between mx-auto shadow-[0_25px_60px_rgba(0,0,0,0.85)]"
     >
       {/* Layer 0: Architectural Grid Background & Crosshairs (+) */}
       <GridCrosshairs />
@@ -33,7 +33,7 @@ export function HeroSection() {
         aria-hidden="true"
         className="absolute inset-x-0 top-[6%] sm:top-[7%] flex justify-center items-start pointer-events-none z-10 overflow-hidden"
       >
-        <span className="watermark-text text-[21vw] leading-none whitespace-nowrap">
+        <span className="watermark-text text-[18vw] xl:text-[16.5vw] leading-none whitespace-nowrap">
           {heroData.watermarkText}
         </span>
       </div>

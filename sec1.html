@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michael — Portfolio Hero</title>
+    <title>Michael — Portfolio & Automation Engineer</title>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@700;800;900&display=swap"
         rel="stylesheet">
 
     <script>
@@ -25,10 +25,11 @@
                         syne: ['Syne', 'sans-serif'],
                     },
                     colors: {
-                        'brand-dark': '#0d0705',
+                        'brand-dark': '#0b0604',
                         'brand-orange': '#dd3c00',
-                        'brand-orange-deep': '#b42600',
-                        'brand-orange-light': '#eb4a05',
+                        'brand-orange-deep': '#9d2200',
+                        'brand-pill': '#f4efe8',
+                        'brand-accent': '#ea580c',
                     }
                 }
             }
@@ -38,7 +39,7 @@
     <style>
         * {
             box-sizing: border-box;
-            user-select: none;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
@@ -47,19 +48,15 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: #111111;
         }
 
-        /* Orange Hero Radial Canvas */
+        /* Section 1: Hero Canvas & Grid Styling */
         .hero-canvas {
-            background: radial-gradient(circle at 50% 38%, #f04b08 0%, #d83500 48%, #9d2200 100%);
+            background: radial-gradient(circle at 50% 36%, #f04b08 0%, #d83500 50%, #9d2200 100%);
             box-shadow: 0 0 60px rgba(0, 0, 0, 0.8), inset 0 0 80px rgba(0, 0, 0, 0.25);
         }
 
-        /* Architectural Grid Line Overlays */
         .hero-grid {
             background-image:
                 linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
@@ -67,7 +64,6 @@
             background-size: 25% 33.333%;
         }
 
-        /* Giant Background Watermark Text */
         .watermark-text {
             font-family: 'Syne', sans-serif;
             font-weight: 900;
@@ -77,7 +73,6 @@
             pointer-events: none;
         }
 
-        /* Foreground Massive Brand Name */
         .foreground-name {
             font-family: 'Syne', sans-serif;
             font-weight: 900;
@@ -87,7 +82,7 @@
             text-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
         }
 
-        /* 2-line Hamburger to 'X' (Cross) morph transition */
+        /* 2-line Hamburger morph into Cross ('X') */
         .hamburger-btn {
             width: 44px;
             height: 44px;
@@ -122,7 +117,6 @@
             width: 30px;
         }
 
-        /* Hamburger Hover Accent */
         .hamburger-btn:not(.is-active):hover .line-1 {
             width: 32px;
         }
@@ -131,7 +125,6 @@
             width: 22px;
         }
 
-        /* Active State: Morphs smoothly into Cross (X) */
         .hamburger-btn.is-active .line-1 {
             width: 26px;
             transform: translateY(4.5px) rotate(45deg);
@@ -142,7 +135,7 @@
             transform: translateY(-4.5px) rotate(-45deg);
         }
 
-        /* Floating Cards subtle motion */
+        /* Floating Card Depth */
         .floating-card {
             transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
         }
@@ -151,219 +144,692 @@
             transform: translateY(-4px);
         }
 
-        /* Bottom fade for person portrait to blend seamlessly */
         .portrait-mask {
             mask-image: linear-gradient(to bottom, black 80%, transparent 98%);
             -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 98%);
         }
+
+        /* Section 2 & 3: Architectural Corner Brackets */
+        .bracket-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .bracket-tl,
+        .bracket-tr,
+        .bracket-bl,
+        .bracket-br {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            pointer-events: none;
+        }
+
+        .bracket-tl {
+            top: -6px;
+            left: -6px;
+            border-top: 1.5px solid #000;
+            border-left: 1.5px solid #000;
+        }
+
+        .bracket-tr {
+            top: -6px;
+            right: -6px;
+            border-top: 1.5px solid #000;
+            border-right: 1.5px solid #000;
+        }
+
+        .bracket-bl {
+            bottom: -6px;
+            left: -6px;
+            border-bottom: 1.5px solid #000;
+            border-left: 1.5px solid #000;
+        }
+
+        .bracket-br {
+            bottom: -6px;
+            right: -6px;
+            border-bottom: 1.5px solid #000;
+            border-right: 1.5px solid #000;
+        }
+
+        /* Service Row Hover Animations */
+        .service-row {
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .service-row:hover .service-title {
+            color: #ea580c;
+        }
+
+        .service-preview-img {
+            transition: transform 0.4s ease, opacity 0.3s ease;
+        }
+
+        .service-row:hover .service-preview-img {
+            transform: scale(1.03);
+        }
     </style>
 </head>
 
-<body class="p-2 sm:p-5 lg:p-8">
+<body class="selection:bg-brand-orange selection:text-white">
 
-    <div
-        class="relative w-full max-w-[1440px] h-[92vh] min-h-[640px] max-h-[920px] rounded-[24px] sm:rounded-[36px] overflow-hidden hero-canvas border border-white/10 flex flex-col justify-between">
+    <!-- ========================================================== -->
+    <!-- SECTION 1: HERO CANVAS (DARK FRAMED W/ ORANGE BACKDROP)    -->
+    <!-- ========================================================== -->
+    <section class="min-h-screen w-full flex items-center justify-center p-2.5 sm:p-5 lg:p-7">
+        <div
+            class="relative w-full max-w-[1440px] h-[92vh] min-h-[640px] max-h-[920px] rounded-[24px] sm:rounded-[36px] overflow-hidden hero-canvas border border-white/10 flex flex-col justify-between">
 
-        <!-- Architectural Grid Background with 4 Quadrant Crosses -->
-        <div class="absolute inset-0 hero-grid pointer-events-none z-0"></div>
+            <!-- Subtle Architectural Grid Background -->
+            <div class="absolute inset-0 hero-grid pointer-events-none z-0"></div>
 
-        <!-- Alignment Crosshairs (+) matching reference placement -->
-        <span
-            class="absolute top-[28%] left-[6%] text-white/40 text-sm font-light select-none pointer-events-none z-10">+</span>
-        <span
-            class="absolute top-[28%] left-[34%] text-white/40 text-sm font-light select-none pointer-events-none z-10">+</span>
-        <span
-            class="absolute top-[28%] right-[34%] text-white/40 text-sm font-light select-none pointer-events-none z-10">+</span>
-        <span
-            class="absolute top-[28%] right-[6%] text-white/40 text-sm font-light select-none pointer-events-none z-10">+</span>
+            <!-- Alignment Crosshairs (+) at Quadrants -->
+            <span
+                class="absolute top-[28%] left-[6%] text-white/40 text-sm font-light select-none pointer-events-none z-10">+</span>
+            <span
+                class="absolute top-[28%] left-[34%] text-white/40 text-sm font-light select-none pointer-events-none z-10">+</span>
+            <span
+                class="absolute top-[28%] right-[34%] text-white/40 text-sm font-light select-none pointer-events-none z-10">+</span>
+            <span
+                class="absolute top-[28%] right-[6%] text-white/40 text-sm font-light select-none pointer-events-none z-10">+</span>
 
-        <span
-            class="absolute bottom-[28%] left-[6%] text-white/40 text-sm font-light select-none pointer-events-none z-10">+</span>
-        <span
-            class="absolute bottom-[28%] right-[6%] text-white/40 text-sm font-light select-none pointer-events-none z-10">+</span>
+            <span
+                class="absolute bottom-[28%] left-[6%] text-white/40 text-sm font-light select-none pointer-events-none z-10">+</span>
+            <span
+                class="absolute bottom-[28%] right-[6%] text-white/40 text-sm font-light select-none pointer-events-none z-10">+</span>
 
-        <span
-            class="absolute bottom-[6%] left-[6%] text-white/40 text-sm font-light select-none pointer-events-none z-10">+</span>
-        <span
-            class="absolute bottom-[6%] right-[6%] text-white/40 text-sm font-light select-none pointer-events-none z-10">+</span>
+            <span
+                class="absolute bottom-[6%] left-[6%] text-white/40 text-sm font-light select-none pointer-events-none z-10">+</span>
+            <span
+                class="absolute bottom-[6%] right-[6%] text-white/40 text-sm font-light select-none pointer-events-none z-10">+</span>
 
-        <header class="relative z-40 w-full px-6 sm:px-10 lg:px-14 pt-7 sm:pt-8 flex items-center justify-between">
-
-            <!-- Brand Logo -->
-            <a href="#home"
-                class="flex items-center gap-0.5 text-white font-bold text-lg sm:text-xl tracking-tight hover:opacity-90 transition-opacity">
-                <span>Portfolioa</span>
-                <span class="text-xs -mt-2">®</span>
-            </a>
-
-            <!-- Desktop Nav Items -->
-            <nav class="hidden md:flex items-center gap-10 text-[13px] font-medium text-white/80 tracking-normal">
+            <!-- Navigation Bar -->
+            <header class="relative z-40 w-full px-6 sm:px-10 lg:px-14 pt-7 sm:pt-8 flex items-center justify-between">
                 <a href="#home"
-                    class="text-white relative pb-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1.5px] after:bg-white">Home</a>
-                <a href="#about" class="hover:text-white transition-colors">About</a>
-                <a href="#work" class="hover:text-white transition-colors flex items-center gap-1">
-                    Work <span class="text-[11px] text-white/60">(02)</span>
+                    class="flex items-center gap-0.5 text-white font-bold text-lg sm:text-xl tracking-tight hover:opacity-90 transition-opacity">
+                    <span>Portfolioa</span>
+                    <span class="text-xs -mt-2">®</span>
                 </a>
-                <a href="#services" class="hover:text-white transition-colors flex items-center gap-1">
-                    Services <span class="text-[11px] text-white/60">(08)</span>
-                </a>
-                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
-            </nav>
 
-            <!-- 2-Line Morphing Hamburger Button -->
-            <button id="navToggle" class="hamburger-btn" aria-label="Toggle Menu" onclick="toggleNavMenu()">
-                <span class="hamburger-line line-1"></span>
-                <span class="hamburger-line line-2"></span>
-            </button>
-        </header>
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center gap-10 text-[13px] font-medium text-white/80 tracking-normal">
+                    <a href="#home"
+                        class="text-white relative pb-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1.5px] after:bg-white">Home</a>
+                    <a href="#impact" class="hover:text-white transition-colors">About</a>
+                    <a href="#services" class="hover:text-white transition-colors flex items-center gap-1">
+                        Services <span class="text-[11px] text-white/60">(04)</span>
+                    </a>
+                    <a href="#work" class="hover:text-white transition-colors flex items-center gap-1">
+                        Work <span class="text-[11px] text-white/60">(12)</span>
+                    </a>
+                    <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+                </nav>
 
-        <!-- Giant Background Watermark Text -->
-        <div
-            class="absolute inset-x-0 top-[6%] sm:top-[7%] flex justify-center items-start pointer-events-none z-0 overflow-hidden">
-            <h1 class="watermark-text text-[21vw] leading-none whitespace-nowrap">
-                MICHAEL
-            </h1>
-        </div>
-
-        <!-- Center Cutout Portrait (Zero Background Box, High Depth Layering) -->
-        <div class="absolute inset-x-0 bottom-0 top-[10%] flex justify-center items-end pointer-events-none z-20">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80"
-                alt="Michael portrait cutout"
-                class="portrait-mask h-[80%] sm:h-[86%] lg:h-[93%] w-auto max-w-none object-cover object-top drop-shadow-[0_20px_45px_rgba(0,0,0,0.55)] select-none"
-                onerror="this.src='https://placehold.co/800x1000/transparent/ffffff?text=Portrait+PNG'" />
-        </div>
-
-        <!-- Middle-Left Manifesto Description -->
-        <div
-            class="absolute left-6 sm:left-10 lg:left-14 top-[32%] sm:top-[34%] max-w-[270px] sm:max-w-[310px] z-30 pointer-events-auto">
-            <div class="flex items-start gap-2">
-                <span class="text-white/60 text-xs mt-0.5">+</span>
-                <p
-                    class="text-[11px] sm:text-[12px] font-semibold tracking-wider text-white/95 uppercase leading-[1.6]">
-                    I design user-centered digital experiences that are simple, smart and impactful.
-                </p>
-            </div>
-        </div>
-
-        <!-- Top-Right Floating Polaroid Card (Zentix Device) -->
-        <div
-            class="hidden sm:block absolute right-8 sm:right-12 lg:right-14 top-[24%] sm:top-[26%] z-30 pointer-events-auto">
-            <div
-                class="floating-card bg-white rounded-[16px] p-2.5 sm:p-3 shadow-[0_22px_40px_rgba(0,0,0,0.35)] w-[160px] sm:w-[185px]">
-                <div class="w-full aspect-square rounded-[10px] overflow-hidden bg-neutral-100 mb-2.5">
-                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80"
-                        alt="Hardware Project Preview" class="w-full h-full object-cover" />
-                </div>
-                <div
-                    class="flex items-center justify-between text-[11px] font-semibold text-neutral-800 tracking-tight px-1">
-                    <span class="flex items-center gap-1">
-                        <span class="text-xs">✱</span> ZENTIX
-                    </span>
-                    <span class="text-neutral-400 font-medium">/Web Design</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bottom Container: Left Big Name & Right 'Let's Talk' Card -->
-        <div
-            class="relative z-30 px-6 sm:px-10 lg:px-14 pb-7 sm:pb-9 flex flex-col md:flex-row md:items-end justify-between gap-6">
-
-            <!-- Bottom-Left Branding -->
-            <div class="pointer-events-auto">
-                <span class="block text-white/90 text-xs sm:text-sm font-semibold tracking-wider mb-1">©2026</span>
-                <h2 class="foreground-name text-[14vw] sm:text-[10vw] lg:text-[7.6vw]">
-                    MICHAEL
-                </h2>
-            </div>
-
-            <!-- Bottom-Right Floating "Let's Talk" Card -->
-            <div
-                class="floating-card bg-[#111113]/90 backdrop-blur-md border border-white/10 rounded-[18px] p-3 sm:p-3.5 shadow-[0_20px_45px_rgba(0,0,0,0.5)] flex items-center justify-between gap-4 max-w-[290px] w-full pointer-events-auto self-end">
-                <div class="flex items-center gap-3">
-                    <div
-                        class="w-11 h-11 rounded-[10px] overflow-hidden bg-neutral-800 flex-shrink-0 border border-white/15">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
-                            alt="Michael Thumbnail" class="w-full h-full object-cover" />
-                    </div>
-                    <div>
-                        <span class="block text-[11px] text-white/50 font-medium leading-none mb-1">Let's Talk</span>
-                        <h4 class="text-xs sm:text-[13px] font-bold text-white leading-tight">Michael</h4>
-                        <p class="text-[10px] text-white/60 font-normal leading-tight">UI/UX Designer</p>
-                    </div>
-                </div>
-
-                <button onclick="showContactModal()"
-                    class="w-9 h-9 rounded-[10px] bg-white text-black flex items-center justify-center hover:bg-neutral-200 transition-colors flex-shrink-0 group"
-                    aria-label="Open contact">
-                    <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
-                            d="M7 17L17 7M17 7H9M17 7V15"></path>
-                    </svg>
+                <!-- 2-Line Morphing Hamburger Button -->
+                <button id="navToggle" class="hamburger-btn" aria-label="Toggle Menu" onclick="toggleNavMenu()">
+                    <span class="hamburger-line line-1"></span>
+                    <span class="hamburger-line line-2"></span>
                 </button>
+            </header>
+
+            <!-- Giant Background Watermark Text Behind Portrait Cutout -->
+            <div
+                class="absolute inset-x-0 top-[6%] sm:top-[7%] flex justify-center items-start pointer-events-none z-0 overflow-hidden">
+                <h1 class="watermark-text text-[21vw] leading-none whitespace-nowrap">
+                    MICHAEL
+                </h1>
+            </div>
+
+            <!-- Center Cutout Portrait (Zero Box Background) -->
+            <div class="absolute inset-x-0 bottom-0 top-[10%] flex justify-center items-end pointer-events-none z-20">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80"
+                    alt="Michael portrait cutout"
+                    class="portrait-mask h-[80%] sm:h-[86%] lg:h-[93%] w-auto max-w-none object-cover object-top drop-shadow-[0_20px_45px_rgba(0,0,0,0.55)] select-none"
+                    onerror="this.src='https://placehold.co/800x1000/transparent/ffffff?text=Portrait+PNG'" />
+            </div>
+
+            <!-- Left-hand Manifesto Paragraph -->
+            <div
+                class="absolute left-6 sm:left-10 lg:left-14 top-[32%] sm:top-[34%] max-w-[270px] sm:max-w-[310px] z-30 pointer-events-auto">
+                <div class="flex items-start gap-2">
+                    <span class="text-white/60 text-xs mt-0.5">+</span>
+                    <p
+                        class="text-[11px] sm:text-[12px] font-semibold tracking-wider text-white/95 uppercase leading-[1.6]">
+                        I design user-centered digital experiences and scalable automation workflows that are simple,
+                        smart and impactful.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Top-Right Floating Polaroid Card -->
+            <div
+                class="hidden sm:block absolute right-8 sm:right-12 lg:right-14 top-[24%] sm:top-[26%] z-30 pointer-events-auto">
+                <div
+                    class="floating-card bg-white rounded-[16px] p-2.5 sm:p-3 shadow-[0_22px_40px_rgba(0,0,0,0.35)] w-[160px] sm:w-[185px]">
+                    <div class="w-full aspect-square rounded-[10px] overflow-hidden bg-neutral-100 mb-2.5">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80"
+                            alt="Hardware Device Preview" class="w-full h-full object-cover" />
+                    </div>
+                    <div
+                        class="flex items-center justify-between text-[11px] font-semibold text-neutral-800 tracking-tight px-1">
+                        <span class="flex items-center gap-1">
+                            <span class="text-xs text-orange-500">✱</span> ZENTIX
+                        </span>
+                        <span class="text-neutral-400 font-medium">/Automation</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Row: Foreground Name & 'Let's Talk' Card -->
+            <div
+                class="relative z-30 px-6 sm:px-10 lg:px-14 pb-7 sm:pb-9 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div class="pointer-events-auto">
+                    <span class="block text-white/90 text-xs sm:text-sm font-semibold tracking-wider mb-1">©2026</span>
+                    <h2 class="foreground-name text-[14vw] sm:text-[10vw] lg:text-[7.6vw]">
+                        MICHAEL
+                    </h2>
+                </div>
+
+                <!-- Floating Let's Talk CTA Card -->
+                <div
+                    class="floating-card bg-[#111113]/90 backdrop-blur-md border border-white/10 rounded-[18px] p-3 sm:p-3.5 shadow-[0_20px_45px_rgba(0,0,0,0.5)] flex items-center justify-between gap-4 max-w-[290px] w-full pointer-events-auto self-end">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-11 h-11 rounded-[10px] overflow-hidden bg-neutral-800 flex-shrink-0 border border-white/15">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
+                                alt="Michael Thumbnail" class="w-full h-full object-cover" />
+                        </div>
+                        <div>
+                            <span class="block text-[11px] text-white/50 font-medium leading-none mb-1">Let's
+                                Talk</span>
+                            <h4 class="text-xs sm:text-[13px] font-bold text-white leading-tight">Michael</h4>
+                            <p class="text-[10px] text-white/60 font-normal leading-tight">Dev &amp; n8n Specialist</p>
+                        </div>
+                    </div>
+
+                    <a href="#contact"
+                        class="w-9 h-9 rounded-[10px] bg-white text-black flex items-center justify-center hover:bg-neutral-200 transition-colors flex-shrink-0 group"
+                        aria-label="Open contact">
+                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
+                                d="M7 17L17 7M17 7H9M17 7H9M17 7V15"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Morph Mobile Overlay Menu -->
+            <div id="navDrawer"
+                class="absolute inset-0 bg-[#0d0705]/95 backdrop-blur-xl z-50 flex flex-col justify-center items-center gap-8 text-2xl font-bold text-white opacity-0 pointer-events-none transition-all duration-300">
+                <a href="#home" onclick="toggleNavMenu()" class="hover:text-brand-orange transition-colors">Home</a>
+                <a href="#impact" onclick="toggleNavMenu()" class="hover:text-brand-orange transition-colors">About
+                    &amp; Impact</a>
+                <a href="#services" onclick="toggleNavMenu()" class="hover:text-brand-orange transition-colors">Services
+                    (04)</a>
+                <a href="#work" onclick="toggleNavMenu()" class="hover:text-brand-orange transition-colors">Work</a>
+                <a href="#contact" onclick="toggleNavMenu()"
+                    class="hover:text-brand-orange transition-colors">Contact</a>
             </div>
 
         </div>
+    </section>
 
-        <!-- Fullscreen / Drawer Mobile Menu -->
-        <div id="navDrawer"
-            class="absolute inset-0 bg-[#0d0705]/95 backdrop-blur-xl z-50 flex flex-col justify-center items-center gap-8 text-2xl font-bold text-white opacity-0 pointer-events-none transition-all duration-300">
-            <a href="#home" onclick="toggleNavMenu()" class="hover:text-brand-orange transition-colors">Home</a>
-            <a href="#about" onclick="toggleNavMenu()" class="hover:text-brand-orange transition-colors">About</a>
-            <a href="#work" onclick="toggleNavMenu()" class="hover:text-brand-orange transition-colors">Work (02)</a>
-            <a href="#services" onclick="toggleNavMenu()" class="hover:text-brand-orange transition-colors">Services
-                (08)</a>
-            <a href="#contact" onclick="toggleNavMenu()" class="hover:text-brand-orange transition-colors">Contact</a>
+    <!-- ========================================================== -->
+    <!-- SECTION 2: TRUSTED BRANDS & IMPACT (MATCHING SCREENSHOT 1 & 2) -->
+    <!-- ========================================================== -->
+    <section id="impact"
+        class="w-full bg-[#fdfdfd] text-[#111111] py-16 sm:py-24 px-6 sm:px-12 lg:px-20 border-t border-neutral-200">
+        <div class="max-w-[1360px] mx-auto">
 
-            <div class="mt-4 pt-6 border-t border-white/10 flex items-center gap-6 text-sm font-normal text-white/60">
-                <span>Available for new projects</span>
-                <button onclick="showContactModal(); toggleNavMenu();"
-                    class="px-4 py-2 rounded-full bg-white text-black font-semibold hover:bg-white/90 text-xs">Let's
-                    Talk</button>
+            <!-- Top Row: "TRUSTED BY LEADING BRANDS" + Logo Row -->
+            <div
+                class="flex flex-col lg:flex-row lg:items-center justify-between pb-16 sm:pb-20 border-b border-neutral-200/80 gap-8">
+                <div
+                    class="text-[12px] font-bold tracking-widest text-neutral-800 uppercase flex-shrink-0 leading-tight">
+                    TRUSTED BY<br />LEADING BRANDS
+                </div>
+
+                <!-- Authentic Logoipsum Client Row -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 items-center gap-8 sm:gap-14 opacity-80">
+                    <!-- Logo 1 -->
+                    <div class="flex items-center gap-2 font-bold tracking-tighter text-lg text-neutral-800">
+                        <svg class="w-6 h-6 text-neutral-700" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                        </svg>
+                        <span class="tracking-widest font-black uppercase text-sm">LOGOIPSUM</span>
+                    </div>
+
+                    <!-- Logo 2 -->
+                    <div class="flex items-center gap-1.5 font-bold tracking-tight text-xl text-neutral-900">
+                        <span class="font-extrabold font-serif italic text-2xl">L</span>ogoipsum
+                    </div>
+
+                    <!-- Logo 3 -->
+                    <div class="flex items-center gap-2 border-b-2 border-neutral-800 pb-0.5">
+                        <span class="text-xs font-black tracking-widest uppercase">LOGOIPSUM</span>
+                    </div>
+
+                    <!-- Logo 4 -->
+                    <div class="flex items-center gap-2">
+                        <svg class="w-5 h-5 text-neutral-800" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z" />
+                        </svg>
+                        <span class="font-semibold text-neutral-700 text-sm">logo<b
+                                class="text-neutral-900">ipsum</b></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Impact Grid Layout -->
+            <div class="pt-16 sm:pt-20">
+
+                <!-- Small Pill Tag: "✱ BETTER DIGITAL JOURNEYS." -->
+                <div
+                    class="inline-flex items-center gap-1.5 bg-[#f0eae1] px-3 py-1 rounded-sm text-[10.5px] font-bold tracking-widest text-neutral-800 uppercase mb-8">
+                    <span class="text-brand-orange text-xs">✱</span>
+                    <span>BETTER DIGITAL JOURNEYS.</span>
+                </div>
+
+                <!-- Giant Split Headline -->
+                <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16 sm:mb-20">
+                    <div class="lg:col-span-8">
+                        <h2
+                            class="text-[9vw] sm:text-[6.5vw] lg:text-[5.2vw] font-black tracking-tight leading-[0.96] uppercase font-sans text-neutral-950">
+                            MY IMPACT<br />
+                            <span class="text-neutral-900">THROUGH </span><span
+                                class="text-neutral-300">USER</span><br />
+                            <span class="text-neutral-400">EXPERIENCE</span>
+                        </h2>
+                    </div>
+
+                    <!-- Subtle 8-point Starburst Icon in between -->
+                    <div class="hidden lg:flex lg:col-span-1 justify-center pt-8">
+                        <svg class="w-14 h-14 text-neutral-200" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M11 2h2v7h-2zm0 13h2v7h-2zm9-4v2h-7v-2zm-13 0v2H0v-2zm12.364-7.778l1.414 1.414-4.95 4.95-1.414-1.414zm-9.192 9.192l1.414 1.414-4.95 4.95-1.414-1.414zm10.606 4.95l-1.414 1.414-4.95-4.95 1.414-1.414zm-9.192-9.192l-1.414 1.414-4.95-4.95 1.414-1.414z" />
+                        </svg>
+                    </div>
+
+                    <!-- Top-Right Portrait Image Card with warm filmic tint -->
+                    <div class="lg:col-span-3 flex justify-start lg:justify-end">
+                        <div class="w-[140px] sm:w-[170px] aspect-[4/5] rounded-[6px] overflow-hidden shadow-md">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
+                                alt="Portrait with warm lighting"
+                                class="w-full h-full object-cover filter contrast-125" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lower Section 2 Row: Left Corner-Bracket Portrait + Right Bio & Metric Cards -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+
+                    <!-- Left: Portrait with Authentic Corner Crop Ticks [ ] -->
+                    <div class="lg:col-span-5 flex justify-center lg:justify-start">
+                        <div class="bracket-container p-2">
+                            <span class="bracket-tl"></span>
+                            <span class="bracket-tr"></span>
+                            <span class="bracket-bl"></span>
+                            <span class="bracket-br"></span>
+
+                            <div class="w-[260px] sm:w-[320px] aspect-[4/5] overflow-hidden rounded-[2px]">
+                                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80"
+                                    alt="Motion portrait in orange gradient lighting"
+                                    class="w-full h-full object-cover" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Bio + 2 Clean Stats Boxes -->
+                    <div class="lg:col-span-7 flex flex-col justify-between h-full pt-2">
+
+                        <!-- Bio Paragraph matching screenshot exact caps format -->
+                        <p
+                            class="text-[13px] sm:text-[14px] font-bold text-neutral-800 uppercase tracking-wide leading-relaxed max-w-[540px] mb-12">
+                            HI, I'M MICHAEL, A SOFTWARE DEVELOPER &amp; n8n AUTOMATION SPECIALIST PASSIONATE ABOUT
+                            CREATING INTUITIVE USER EXPERIENCES, SCALABLE BACKENDS, AND HIGH-IMPACT AUTOMATION FLOWS.
+                        </p>
+
+                        <!-- Metrics Cards (Clean Framer white blocks) -->
+                        <div class="space-y-4 max-w-[560px]">
+
+                            <!-- Metric 1: 37+ Projects Completed -->
+                            <div
+                                class="bg-neutral-50 hover:bg-neutral-100/80 transition-colors border border-neutral-200/80 rounded-[8px] p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                                <div
+                                    class="text-4xl sm:text-5xl font-extrabold tracking-tight text-neutral-950 font-sans min-w-[130px]">
+                                    37+
+                                </div>
+                                <div class="sm:border-l sm:border-neutral-200 sm:pl-7">
+                                    <div
+                                        class="flex items-center gap-1.5 text-[11px] font-bold tracking-widest text-neutral-900 uppercase mb-1">
+                                        <span class="text-brand-orange">✱</span>
+                                        <span>PROJECTS COMPLETED</span>
+                                    </div>
+                                    <p class="text-[12px] text-neutral-500 font-normal leading-normal">
+                                        I have successfully completed a variety of projects across modern web, backend
+                                        APIs, and multi-tier automation.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Metric 2: 72+ Happy Clients -->
+                            <div
+                                class="bg-neutral-50 hover:bg-neutral-100/80 transition-colors border border-neutral-200/80 rounded-[8px] p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                                <div
+                                    class="text-4xl sm:text-5xl font-extrabold tracking-tight text-neutral-950 font-sans min-w-[130px]">
+                                    72+
+                                </div>
+                                <div class="sm:border-l sm:border-neutral-200 sm:pl-7">
+                                    <div
+                                        class="flex items-center gap-1.5 text-[11px] font-bold tracking-widest text-neutral-900 uppercase mb-1">
+                                        <span class="text-brand-orange">✱</span>
+                                        <span>HAPPY CLIENTS</span>
+                                    </div>
+                                    <p class="text-[12px] text-neutral-500 font-normal leading-normal">
+                                        I have worked with clients from diverse industries delivering scalable
+                                        architectures and automated workflows.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- SECTION 3: POWERFUL SERVICES (MATCHING SCREENSHOT 3 & 4)   -->
+    <!-- ========================================================== -->
+    <section id="services"
+        class="w-full bg-[#fdfdfd] text-[#111111] py-20 sm:py-28 px-6 sm:px-12 lg:px-20 border-t border-neutral-200">
+        <div class="max-w-[1360px] mx-auto">
+
+            <!-- Top Pill Tag: "✱ OUR SERVICES" -->
+            <div
+                class="inline-flex items-center gap-1.5 bg-[#f0eae1] px-3 py-1 rounded-sm text-[10.5px] font-bold tracking-widest text-neutral-800 uppercase mb-6">
+                <span class="text-brand-orange text-xs">✱</span>
+                <span>OUR SERVICES</span>
+            </div>
+
+            <!-- Giant Header -->
+            <h2
+                class="text-[8.5vw] sm:text-[6.5vw] lg:text-[4.8vw] font-black tracking-tight leading-[0.98] uppercase font-sans text-neutral-950 mb-16 sm:mb-20">
+                POWERFUL<br />
+                DESIGN SERVICES<br />
+                <span class="text-neutral-400">FOR YOUR BRAND</span>
+            </h2>
+
+            <!-- Services List (Accordion / Directory Rows) -->
+            <div class="divide-y divide-neutral-200/90 border-y border-neutral-200/90">
+
+                <!-- SERVICE ROW 001: UI/UX & FRONTEND ARCHITECTURE -->
+                <div class="service-row py-12 sm:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start group">
+                    <!-- Col 1: Number -->
+                    <div class="lg:col-span-2 flex items-center gap-2 text-sm font-semibold text-neutral-500">
+                        <span class="text-brand-orange">✱</span>
+                        <span class="tracking-wider">001</span>
+                    </div>
+
+                    <!-- Col 2: Content & Skill Badges -->
+                    <div class="lg:col-span-6 pr-0 lg:pr-8">
+                        <h3
+                            class="service-title text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-neutral-950 mb-3 transition-colors">
+                            UI/UX DESIGN &amp; DEVELOPMENT
+                        </h3>
+                        <p class="text-xs sm:text-[13px] text-neutral-600 leading-relaxed mb-6 max-w-[500px]">
+                            Crafting intuitive digital experiences and high-performance web frontends that connect users
+                            with digital products effortlessly.
+                        </p>
+
+                        <!-- Tags Matching Screenshot Structure -->
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">User
+                                Experience Research</span>
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">Clean
+                                Wireframing</span>
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">Rapid
+                                Prototype Testing</span>
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">Usability
+                                Flow Testing</span>
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">Smart
+                                Interaction Design</span>
+                        </div>
+                    </div>
+
+                    <!-- Col 3: Right Visual Media Card -->
+                    <div class="lg:col-span-4 flex justify-start lg:justify-end">
+                        <div
+                            class="relative w-full max-w-[340px] aspect-[16/10] rounded-[6px] overflow-hidden bg-neutral-100 shadow-sm border border-neutral-200/60">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80"
+                                alt="UI/UX Interior preview" class="service-preview-img w-full h-full object-cover" />
+                            <div
+                                class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-[3px] shadow-sm flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-brand-orange"></span>
+                                <span class="text-[9px] font-bold tracking-widest uppercase text-neutral-800">VIEW
+                                    CASE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SERVICE ROW 002: n8n & AUTOMATION -->
+                <div class="service-row py-12 sm:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start group">
+                    <!-- Col 1: Number -->
+                    <div class="lg:col-span-2 flex items-center gap-2 text-sm font-semibold text-neutral-500">
+                        <span class="text-brand-orange">✱</span>
+                        <span class="tracking-wider">002</span>
+                    </div>
+
+                    <!-- Col 2: Content & Skill Badges -->
+                    <div class="lg:col-span-6 pr-0 lg:pr-8">
+                        <h3
+                            class="service-title text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-neutral-950 mb-3 transition-colors">
+                            n8n &amp; WORKFLOW AUTOMATION
+                        </h3>
+                        <p class="text-xs sm:text-[13px] text-neutral-600 leading-relaxed mb-6 max-w-[500px]">
+                            Designing end-to-end automated pipelines, webhook listeners, AI-driven data enrichment, and
+                            self-hosted n8n infrastructure.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">n8n
+                                Self-Hosted Setup</span>
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">Webhook
+                                Orchestration</span>
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">Multi-Step
+                                Workflows</span>
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">AI
+                                Agent Integrations</span>
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">Error
+                                Fallbacks &amp; Alerts</span>
+                        </div>
+                    </div>
+
+                    <!-- Col 3: Right Visual Media Card -->
+                    <div class="lg:col-span-4 flex justify-start lg:justify-end">
+                        <div
+                            class="relative w-full max-w-[340px] aspect-[16/10] rounded-[6px] overflow-hidden bg-neutral-100 shadow-sm border border-neutral-200/60">
+                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80"
+                                alt="Automation team collaboration"
+                                class="service-preview-img w-full h-full object-cover" />
+                            <div
+                                class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-[3px] shadow-sm flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-brand-orange"></span>
+                                <span class="text-[9px] font-bold tracking-widest uppercase text-neutral-800">AUTOMATION
+                                    FLOW</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SERVICE ROW 003: PRODUCT & BACKEND ARCHITECTURE -->
+                <div class="service-row py-12 sm:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start group">
+                    <!-- Col 1: Number -->
+                    <div class="lg:col-span-2 flex items-center gap-2 text-sm font-semibold text-neutral-500">
+                        <span class="text-brand-orange">✱</span>
+                        <span class="tracking-wider">003</span>
+                    </div>
+
+                    <!-- Col 2: Content & Skill Badges -->
+                    <div class="lg:col-span-6 pr-0 lg:pr-8">
+                        <h3
+                            class="service-title text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-neutral-950 mb-3 transition-colors">
+                            PRODUCT DESIGN &amp; API SYSTEMS
+                        </h3>
+                        <p class="text-xs sm:text-[13px] text-neutral-600 leading-relaxed mb-6 max-w-[500px]">
+                            Shaping digital products from concept to launch with strategic system design, secure
+                            REST/GraphQL APIs, and high availability.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">Strategic
+                                System Design</span>
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">Scalable
+                                Architecture</span>
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">Early
+                                Concept Ideation</span>
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">Real
+                                User Validation</span>
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">End-to-End
+                                Delivery</span>
+                        </div>
+                    </div>
+
+                    <!-- Col 3: Right Visual Media Card -->
+                    <div class="lg:col-span-4 flex justify-start lg:justify-end">
+                        <div
+                            class="relative w-full max-w-[340px] aspect-[16/10] rounded-[6px] overflow-hidden bg-neutral-100 shadow-sm border border-neutral-200/60">
+                            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
+                                alt="Product developer working at desk"
+                                class="service-preview-img w-full h-full object-cover" />
+                            <div
+                                class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-[3px] shadow-sm flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-brand-orange"></span>
+                                <span class="text-[9px] font-bold tracking-widest uppercase text-neutral-800">DISCOVER
+                                    MORE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SERVICE ROW 004: BRAND & SYSTEM IDENTITY -->
+                <div class="service-row py-12 sm:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start group">
+                    <!-- Col 1: Number -->
+                    <div class="lg:col-span-2 flex items-center gap-2 text-sm font-semibold text-neutral-500">
+                        <span class="text-brand-orange">✱</span>
+                        <span class="tracking-wider">004</span>
+                    </div>
+
+                    <!-- Col 2: Content & Skill Badges -->
+                    <div class="lg:col-span-6 pr-0 lg:pr-8">
+                        <h3
+                            class="service-title text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-neutral-950 mb-3 transition-colors">
+                            BRAND &amp; DESIGN ENGINEERING
+                        </h3>
+                        <p class="text-xs sm:text-[13px] text-neutral-600 leading-relaxed mb-6 max-w-[500px]">
+                            Building cohesive visual identities, tokens, and scalable component design systems that
+                            communicate personality and trust.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">Design
+                                System Tokens</span>
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">Component
+                                Libraries</span>
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">Visual
+                                Storytelling</span>
+                            <span
+                                class="bg-neutral-100 hover:bg-neutral-200/70 text-neutral-700 text-[11px] font-medium px-3 py-1.5 rounded-sm transition-colors">Typography
+                                Styling</span>
+                        </div>
+                    </div>
+
+                    <!-- Col 3: Right Visual Media Card -->
+                    <div class="lg:col-span-4 flex justify-start lg:justify-end">
+                        <div
+                            class="relative w-full max-w-[340px] aspect-[16/10] rounded-[6px] overflow-hidden bg-neutral-100 shadow-sm border border-neutral-200/60">
+                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80"
+                                alt="Design engineering code screen"
+                                class="service-preview-img w-full h-full object-cover" />
+                            <div
+                                class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-[3px] shadow-sm flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-brand-orange"></span>
+                                <span class="text-[9px] font-bold tracking-widest uppercase text-neutral-800">VIEW
+                                    SYSTEMS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- FOOTER & QUICK CONTACT ANCHOR                              -->
+    <!-- ========================================================== -->
+    <footer id="contact" class="w-full bg-[#0b0604] text-white py-12 px-6 sm:px-12 lg:px-20 border-t border-white/10">
+        <div class="max-w-[1360px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2">
+                <span class="text-brand-orange text-lg">✱</span>
+                <span class="text-sm font-semibold tracking-wide text-neutral-300">Michael — Software Engineer &amp; n8n
+                    Specialist</span>
+            </div>
+
+            <div class="flex items-center gap-6 text-xs text-neutral-400">
+                <a href="#home" class="hover:text-white transition-colors">Back to top ↑</a>
+                <a href="https://github.com" target="_blank" rel="noreferrer"
+                    class="hover:text-white transition-colors">GitHub</a>
+                <a href="https://linkedin.com" target="_blank" rel="noreferrer"
+                    class="hover:text-white transition-colors">LinkedIn</a>
             </div>
         </div>
+    </footer>
 
-        <!-- In-App Interactive Toast Notification (No alert()) -->
-        <div id="appToast"
-            class="absolute top-6 left-1/2 -translate-x-1/2 z-50 bg-black/85 backdrop-blur-md text-white text-xs py-2.5 px-5 rounded-full border border-white/15 opacity-0 pointer-events-none transition-opacity duration-300 shadow-2xl flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span id="toastMessage">Action triggered!</span>
-        </div>
-
-    </div>
-
+    <!-- Script for hamburger morph and interactive events -->
     <script>
-        // 2-line Hamburger toggle into 'X' and back
         function toggleNavMenu() {
             const toggleBtn = document.getElementById('navToggle');
             const drawer = document.getElementById('navDrawer');
             const isActive = toggleBtn.classList.contains('is-active');
 
             if (isActive) {
-                // Switch back to 2 lines & hide drawer
                 toggleBtn.classList.remove('is-active');
                 drawer.classList.remove('opacity-100', 'pointer-events-auto');
                 drawer.classList.add('opacity-0', 'pointer-events-none');
             } else {
-                // Morph into cross 'X' & show drawer
                 toggleBtn.classList.add('is-active');
                 drawer.classList.remove('opacity-0', 'pointer-events-none');
                 drawer.classList.add('opacity-100', 'pointer-events-auto');
             }
-        }
-
-        // Interactive notification without using alert()
-        function showContactModal() {
-            const toast = document.getElementById('appToast');
-            const toastMsg = document.getElementById('toastMessage');
-            toastMsg.textContent = "Connecting to Michael's calendar / contact...";
-            toast.classList.remove('opacity-0', 'pointer-events-none');
-            toast.classList.add('opacity-100');
-
-            setTimeout(() => {
-                toast.classList.remove('opacity-100');
-                toast.classList.add('opacity-0', 'pointer-events-none');
-            }, 2600);
         }
     </script>
 </body>

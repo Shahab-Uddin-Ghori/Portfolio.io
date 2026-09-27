@@ -60,7 +60,7 @@ export const heroData: HeroData = {
     ],
   },
   portrait: {
-    src: "/images/michael-portrait.jpg",
+    src: "/images/michael-cutout.png",
     alt: "Michael portrait looking left in profile",
   },
   projectBadge: {
@@ -73,6 +73,6 @@ export const heroData: HeroData = {
     tagline: "Let's Talk",
     name: "Michael",
     role: "UI/UX Designer",
-    avatar: "/images/michael-portrait.jpg",
+    avatar: "/images/michael-cutout.png",
   },
 };
