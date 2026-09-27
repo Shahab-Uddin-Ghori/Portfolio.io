@@ -8,15 +8,16 @@ import { ContactCard } from "@/components/ui/ContactCard";
 
 /**
  * HeroSection renders the primary viewport for the portfolio.
- * Implements architectural grid, layer-ordered 3D depth, and exact typography
- * matching the reference design.
+ * Integrates Locomotive Scroll parallax attributes (data-scroll, data-scroll-speed)
+ * for 3D depth layering.
  */
 export function HeroSection() {
   return (
     <section
       id="home"
       aria-label="Hero Section"
-      className="relative w-[97.5vw] h-[95vh] max-w-[97.5vw] max-h-[95vh] rounded-[28px] sm:rounded-[36px] overflow-hidden hero-canvas border border-white/15 flex flex-col justify-between mx-auto shadow-[0_25px_60px_rgba(0,0,0,0.85)]"
+      data-scroll-section
+      className="relative w-[97.5vw] h-[94vh] max-w-[97.5vw] max-h-[94vh] rounded-[28px] sm:rounded-[36px] overflow-hidden hero-canvas border border-white/15 flex flex-col justify-between mx-auto shadow-[0_25px_60px_rgba(0,0,0,0.85)]"
     >
       {/* Layer 0: Architectural Grid Background & Crosshairs (+) */}
       <GridCrosshairs />
@@ -28,9 +29,11 @@ export function HeroSection() {
         navLinks={heroData.navLinks}
       />
 
-      {/* Layer 2: Giant Background Watermark Text ("MICHAEL") */}
+      {/* Layer 2: Giant Background Watermark Text ("MICHAEL") with distinct counter-parallax */}
       <div
         aria-hidden="true"
+        data-scroll
+        data-scroll-speed="-0.22"
         className="absolute inset-x-0 top-[6%] sm:top-[7%] flex justify-center items-start pointer-events-none z-10 overflow-hidden"
       >
         <span className="watermark-text text-[18vw] xl:text-[16.5vw] leading-none whitespace-nowrap">
@@ -38,8 +41,12 @@ export function HeroSection() {
         </span>
       </div>
 
-      {/* Layer 3: Central Portrait Cutout with Bottom Blend */}
-      <div className="absolute inset-x-0 bottom-0 top-[10%] flex justify-center items-end pointer-events-none z-20">
+      {/* Layer 3: Central Portrait Cutout with forward scroll parallax */}
+      <div
+        data-scroll
+        data-scroll-speed="0.14"
+        className="absolute inset-x-0 bottom-0 top-[10%] flex justify-center items-end pointer-events-none z-20"
+      >
         <Image
           src={heroData.portrait.src}
           alt={heroData.portrait.alt}
@@ -50,8 +57,12 @@ export function HeroSection() {
         />
       </div>
 
-      {/* Layer 4: Middle-Left Manifesto Description */}
-      <div className="absolute left-6 sm:left-10 lg:left-14 top-[32%] sm:top-[34%] max-w-[270px] sm:max-w-[310px] z-30 pointer-events-auto">
+      {/* Layer 4: Middle-Left Manifesto Description with slight depth */}
+      <div
+        data-scroll
+        data-scroll-speed="0.08"
+        className="absolute left-6 sm:left-10 lg:left-14 top-[32%] sm:top-[34%] max-w-[270px] sm:max-w-[310px] z-30 pointer-events-auto"
+      >
         <div className="flex items-start gap-2">
           <span
             aria-hidden="true"
@@ -72,8 +83,12 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Layer 5: Top-Right Floating Polaroid Card (Zentix Hardware Device) */}
-      <div className="hidden sm:block absolute right-8 sm:right-12 lg:right-14 top-[24%] sm:top-[26%] z-30 pointer-events-auto">
+      {/* Layer 5: Top-Right Floating Polaroid Card with noticeable counter-float */}
+      <div
+        data-scroll
+        data-scroll-speed="-0.14"
+        className="hidden sm:block absolute right-8 sm:right-12 lg:right-14 top-[24%] sm:top-[26%] z-30 pointer-events-auto"
+      >
         <ProjectBadgeCard
           title={heroData.projectBadge.title}
           category={heroData.projectBadge.category}
@@ -95,7 +110,11 @@ export function HeroSection() {
         </div>
 
         {/* Bottom-Right: Floating "Let's Talk" Card */}
-        <div className="pointer-events-auto self-end md:self-auto">
+        <div
+          data-scroll
+          data-scroll-speed="0.1"
+          className="pointer-events-auto self-end md:self-auto"
+        >
           <ContactCard
             tagline={heroData.contactCard.tagline}
             name={heroData.contactCard.name}

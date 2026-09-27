@@ -44,9 +44,9 @@ export const heroData: HeroData = {
   },
   navLinks: [
     { title: "Home", href: "#home", active: true },
-    { title: "About", href: "#about" },
+    { title: "About", href: "#impact" },
+    { title: "Services", href: "#services", count: "04" },
     { title: "Work", href: "#work", count: "12" },
-    { title: "Services", href: "#services", count: "08" },
     { title: "Contact", href: "#contact" },
   ],
   watermarkText: "MICHAEL",
@@ -55,7 +55,8 @@ export const heroData: HeroData = {
   manifesto: {
     lines: [
       "I DESIGN USER-CENTERED DIGITAL",
-      "EXPERIENCES THAT ARE SIMPLE",
+      "EXPERIENCES AND SCALABLE AUTOMATION",
+      "WORKFLOWS THAT ARE SIMPLE,",
       "SMART AND IMPACTFUL",
     ],
   },

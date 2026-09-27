@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 interface SmoothScrollProviderProps {
   children: ReactNode;
@@ -8,31 +8,35 @@ interface SmoothScrollProviderProps {
 
 /**
  * SmoothScrollProvider initializes Locomotive Scroll (v5 - Lenis powered)
- * on the client side while keeping layout and child pages as Server Components.
- *
- * Honors prefers-reduced-motion and gracefully tears down on unmount.
+ * with a silky momentum inertia curve, progress tracking, and in-view triggers.
  */
 export default function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
   useEffect(() => {
-    // Check if the user has requested reduced motion
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) {
+    // Respect user's reduced-motion preference
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
     }
 
-    let scrollInstance: { destroy: () => void } | null = null;
+    let locomotiveScrollInstance: any = null;
 
     const initScroll = async () => {
       try {
         const LocomotiveScroll = (await import("locomotive-scroll")).default;
-        scrollInstance = new LocomotiveScroll({
+        locomotiveScrollInstance = new LocomotiveScroll({
           lenisOptions: {
-            lerp: 0.1,
-            duration: 1.2,
+            lerp: 0.06, // Silky weighted momentum inertia
+            duration: 1.35,
             smoothWheel: true,
-            wheelMultiplier: 1,
-            touchMultiplier: 1.5,
+            wheelMultiplier: 1.15,
+            touchMultiplier: 1.8,
             infinite: false,
+          },
+          scrollCallback: (scrollValues: any) => {
+            if (scrollValues && typeof scrollValues.progress === "number") {
+              setScrollProgress(scrollValues.progress);
+            }
           },
         });
       } catch (err) {
@@ -43,11 +47,24 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
     initScroll();
 
     return () => {
-      if (scrollInstance && typeof scrollInstance.destroy === "function") {
-        scrollInstance.destroy();
+      if (locomotiveScrollInstance && typeof locomotiveScrollInstance.destroy === "function") {
+        locomotiveScrollInstance.destroy();
       }
     };
   }, []);
 
-  return <>{children}</>;
+  return (
+    <>
+      {/* Top Glowing Scroll Progress Indicator */}
+      <div
+        aria-hidden="true"
+        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-orange-600 via-amber-500 to-orange-400 z-50 origin-left pointer-events-none shadow-[0_0_10px_rgba(234,88,12,0.6)]"
+        style={{
+          transform: `scaleX(${scrollProgress})`,
+          transition: "transform 100ms cubic-bezier(0.16, 1, 0.3, 1)",
+        }}
+      />
+      {children}
+    </>
+  );
 }

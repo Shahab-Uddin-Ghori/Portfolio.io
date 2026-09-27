@@ -14,13 +14,80 @@
   --font-syne: var(--font-syne);
 }
 
-/* Custom font utility */
-.font-syne {
-  font-family: var(--font-syne), "Syne", sans-serif;
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
 }
 
-.font-sans {
-  font-family: var(--font-inter), "Inter", sans-serif;
+::-webkit-scrollbar-track {
+  background: #090403;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ea580c;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(234, 88, 12, 0.4);
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f97316;
+  box-shadow: 0 0 14px rgba(249, 115, 22, 0.7);
+}
+
+/* Firefox scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #ea580c #090403;
+}
+
+/* Locomotive Scroll Engine Base Styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Locomotive Scroll in-view animation utilities */
+.loco-fade-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.loco-fade-up.is-inview {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.loco-scale-in {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.loco-scale-in.is-inview {
+  opacity: 1;
+  transform: scale(1);
 }
 
 /* Deep Vermilion Hero Radial Canvas */
@@ -71,4 +138,61 @@
 
 .floating-card:hover {
   transform: translateY(-4px);
+}
+
+/* Section 2 Architectural Corner Brackets */
+.bracket-container {
+  position: relative;
+  display: inline-block;
+}
+
+.bracket-tl,
+.bracket-tr,
+.bracket-bl,
+.bracket-br {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+}
+
+.bracket-tl {
+  top: -8px;
+  left: -8px;
+  border-top: 1.5px solid #000;
+  border-left: 1.5px solid #000;
+}
+
+.bracket-tr {
+  top: -8px;
+  right: -8px;
+  border-top: 1.5px solid #000;
+  border-right: 1.5px solid #000;
+}
+
+.bracket-bl {
+  bottom: -8px;
+  left: -8px;
+  border-bottom: 1.5px solid #000;
+  border-left: 1.5px solid #000;
+}
+
+.bracket-br {
+  bottom: -8px;
+  right: -8px;
+  border-bottom: 1.5px solid #000;
+  border-right: 1.5px solid #000;
+}
+
+/* Service Row Hover Physics */
+.service-row {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.service-preview-img {
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.service-row:hover .service-preview-img {
+  transform: scale(1.04);
 }

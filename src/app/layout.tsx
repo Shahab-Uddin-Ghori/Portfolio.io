@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${syne.variable} h-full antialiased scroll-smooth`}
+      className={`${inter.variable} ${syne.variable} h-full antialiased`}
     >
       <head>
         <script
