@@ -323,3 +323,24 @@ html.lenis body {
 .service-row:hover .service-preview-img {
   transform: scale(1.04);
 }
+
+/* Infinite Horizontal Marquee Track (Right to Left) */
+@keyframes marqueeLeft {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeft 36s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-left:hover {
+  animation-play-state: paused;
+}
