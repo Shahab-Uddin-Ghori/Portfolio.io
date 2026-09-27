@@ -5,6 +5,10 @@ import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { WhyChooseSection } from "@/components/sections/WhyChooseSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { PricingSection } from "@/components/sections/PricingSection";
+import { InsightsSection } from "@/components/sections/InsightsSection";
+import { ContactSection } from "@/components/sections/ContactSection";
+import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
   return (
@@ -34,6 +38,18 @@ export default function Home() {
 
       {/* SECTION 7: WHAT MY CLIENTS SAY (TESTIMONIALS MARQUEE) */}
       <TestimonialsSection />
+
+      {/* SECTION 8: SIMPLE PLANS FOR EVERY NEED (PRICING & PACKAGES) */}
+      <PricingSection />
+
+      {/* SECTION 9: LATEST DESIGN INSIGHTS (EDITORIAL BLOGS) */}
+      <InsightsSection />
+
+      {/* SECTION 10: LET'S CREATE TOGETHER (WORKING INTERACTIVE CONTACT FORM) */}
+      <ContactSection />
+
+      {/* SECTION 11: FOOTER (MANIFESTO, NEWSLETTER, DIRECTORY & BRAND WORDMARK) */}
+      <Footer />
     </main>
   );
 }
