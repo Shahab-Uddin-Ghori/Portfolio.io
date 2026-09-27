@@ -3,9 +3,11 @@ import Image from "next/image";
 import { impactData } from "@/data/impact";
 import { CornerBracketCard } from "@/components/ui/CornerBracketCard";
 import { MetricCard } from "@/components/ui/MetricCard";
+import { SlideInView } from "@/components/ui/SlideInView";
+import { TypewriterText } from "@/components/ui/TypewriterText";
 
 /**
- * ImpactSection renders Section 2 with Locomotive Scroll parallax and in-view reveals.
+ * ImpactSection renders Section 2 with Locomotive Scroll parallax and interactive entrance animations.
  */
 export function ImpactSection() {
   return (
@@ -13,7 +15,7 @@ export function ImpactSection() {
       id="impact"
       aria-label="About and Impact"
       data-scroll-section
-      className="relative z-20 w-full bg-[#fdfdfd] text-[#111111] py-20 sm:py-28 px-6 sm:px-12 lg:px-20 rounded-none shadow-[0_-30px_70px_rgba(0,0,0,0.55)] border-t border-neutral-200"
+      className="relative z-20 w-full bg-[#fdfdfd] text-[#111111] py-20 sm:py-28 px-6 sm:px-12 lg:px-20 rounded-none shadow-[0_-30px_70px_rgba(0,0,0,0.55)] border-t border-neutral-200 overflow-x-clip"
     >
       <div className="max-w-[1360px] mx-auto">
         {/* Top Row: "TRUSTED BY LEADING BRANDS" + Logo Row */}
@@ -77,14 +79,16 @@ export function ImpactSection() {
               data-scroll-speed="0.05"
               className="lg:col-span-8"
             >
-              <h2 className="text-[9vw] sm:text-[6.5vw] lg:text-[5.2vw] font-black tracking-tight leading-[0.96] uppercase font-sans text-neutral-950">
-                {impactData.headline.line1}
-                <br />
-                <span className="text-neutral-900">{impactData.headline.line2}</span>
-                <span className="text-neutral-300">{impactData.headline.highlight1}</span>
-                <br />
-                <span className="text-neutral-400">{impactData.headline.line3}</span>
-              </h2>
+              <SlideInView direction="up" delay={0.05}>
+                <h2 className="text-[9vw] sm:text-[6.5vw] lg:text-[5.2vw] font-black tracking-tight leading-[0.96] uppercase font-sans text-neutral-950">
+                  {impactData.headline.line1}
+                  <br />
+                  <span className="text-neutral-900">{impactData.headline.line2}</span>
+                  <span className="text-neutral-300">{impactData.headline.highlight1}</span>
+                  <br />
+                  <span className="text-neutral-400">{impactData.headline.line3}</span>
+                </h2>
+              </SlideInView>
             </div>
 
             {/* Subtle 8-point Starburst Icon with counter-rotation/parallax */}
@@ -98,60 +102,64 @@ export function ImpactSection() {
               </svg>
             </div>
 
-            {/* Top-Right Portrait Card */}
+            {/* Top-Right Portrait Card (Flies in from off-screen right) */}
             <div
               data-scroll
               data-scroll-speed="-0.04"
               className="lg:col-span-3 flex justify-start lg:justify-end"
             >
-              <div className="relative w-[140px] sm:w-[170px] aspect-[4/5] rounded-[6px] overflow-hidden shadow-md">
-                <Image
-                  src={impactData.portraitSmall.src}
-                  alt={impactData.portraitSmall.alt}
-                  fill
-                  sizes="(max-width: 640px) 140px, 170px"
-                  className="object-cover filter contrast-125"
-                />
-              </div>
+              <SlideInView direction="right" delay={0.15} className="w-fit">
+                <div className="relative w-[140px] sm:w-[170px] aspect-[4/5] rounded-[6px] overflow-hidden shadow-md">
+                  <Image
+                    src={impactData.portraitSmall.src}
+                    alt={impactData.portraitSmall.alt}
+                    fill
+                    sizes="(max-width: 640px) 140px, 170px"
+                    className="object-cover filter contrast-125"
+                  />
+                </div>
+              </SlideInView>
             </div>
           </div>
 
           {/* Lower Row: Left Corner-Bracket Portrait + Right Bio & Metrics */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            {/* Left: Portrait with Corner Crop Ticks [ ] and in-view reveal */}
+            {/* Left: Portrait with Corner Crop Ticks [ ] (Flies in from off-screen left) */}
             <div
               data-scroll
               data-scroll-speed="0.04"
-              data-scroll-class="is-inview"
-              className="loco-scale-in lg:col-span-5 flex justify-center lg:justify-start"
+              className="lg:col-span-5 flex justify-center lg:justify-start"
             >
-              <CornerBracketCard>
-                <div className="relative w-[260px] sm:w-[320px] aspect-[4/5] overflow-hidden rounded-[2px]">
-                  <Image
-                    src={impactData.portraitBracket.src}
-                    alt={impactData.portraitBracket.alt}
-                    fill
-                    sizes="(max-width: 640px) 260px, 320px"
-                    className="object-cover"
-                  />
-                </div>
-              </CornerBracketCard>
+              <SlideInView direction="left" delay={0.1} className="w-fit">
+                <CornerBracketCard>
+                  <div className="relative w-[260px] sm:w-[320px] aspect-[4/5] overflow-hidden rounded-[2px]">
+                    <Image
+                      src={impactData.portraitBracket.src}
+                      alt={impactData.portraitBracket.alt}
+                      fill
+                      sizes="(max-width: 640px) 260px, 320px"
+                      className="object-cover"
+                    />
+                  </div>
+                </CornerBracketCard>
+              </SlideInView>
             </div>
 
-            {/* Right: Bio + 2 Metric Cards with in-view reveal */}
-            <div
-              data-scroll
-              data-scroll-class="is-inview"
-              className="loco-fade-up lg:col-span-7 flex flex-col justify-between h-full pt-2"
-            >
-              <p className="text-[13px] sm:text-[14px] font-bold text-neutral-800 uppercase tracking-wide leading-relaxed max-w-[540px] mb-12">
-                {impactData.bio}
-              </p>
+            {/* Right: Bio (with typewriter effect) + 2 Metric Cards with in-view reveal */}
+            <div className="lg:col-span-7 flex flex-col justify-between h-full pt-2">
+              <TypewriterText
+                text={impactData.bio}
+                speed={16}
+                delay={250}
+                className="text-[13px] sm:text-[14px] font-bold text-neutral-800 uppercase tracking-wide leading-relaxed max-w-[540px] mb-12 block min-h-[72px]"
+              />
 
-              {/* Metrics */}
+              {/* Metrics (Each container animates into view with count-up numbers) */}
               <div className="space-y-4 max-w-[560px]">
                 {impactData.metrics.map((metric, idx) => (
-                  <MetricCard key={idx} metric={metric} />
+                  <SlideInView key={idx} direction="up" delay={0.25 + idx * 0.2}>
+                    <MetricCard metric={metric} />
+                  </SlideInView>
                 ))}
               </div>
             </div>

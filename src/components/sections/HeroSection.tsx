@@ -17,17 +17,19 @@ export function HeroSection() {
       id="home"
       aria-label="Hero Section"
       data-scroll-section
-      className="relative w-[97.5vw] h-[94vh] max-w-[97.5vw] max-h-[94vh] rounded-[28px] sm:rounded-[36px] overflow-hidden hero-canvas border border-white/15 flex flex-col justify-between mx-auto shadow-[0_25px_60px_rgba(0,0,0,0.85)]"
+      className="relative w-[97.5vw] h-[94vh] max-w-[97.5vw] max-h-[94vh] rounded-[28px] sm:rounded-[36px] overflow-hidden hero-canvas border border-white/15 flex flex-col justify-between mx-auto shadow-[0_25px_60px_rgba(0,0,0,0.85)] anim-hero-canvas"
     >
       {/* Layer 0: Architectural Grid Background & Crosshairs (+) */}
       <GridCrosshairs />
 
       {/* Layer 1: Top Navigation Bar */}
-      <Navbar
-        brandName={heroData.brand.name}
-        trademark={heroData.brand.trademark}
-        navLinks={heroData.navLinks}
-      />
+      <div className="anim-hero-nav">
+        <Navbar
+          brandName={heroData.brand.name}
+          trademark={heroData.brand.trademark}
+          navLinks={heroData.navLinks}
+        />
+      </div>
 
       {/* Layer 2: Giant Background Watermark Text ("MICHAEL") with distinct counter-parallax */}
       <div
@@ -36,7 +38,7 @@ export function HeroSection() {
         data-scroll-speed="-0.22"
         className="absolute inset-x-0 top-[6%] sm:top-[7%] flex justify-center items-start pointer-events-none z-10 overflow-hidden"
       >
-        <span className="watermark-text text-[18vw] xl:text-[16.5vw] leading-none whitespace-nowrap">
+        <span className="watermark-text text-[18vw] xl:text-[16.5vw] leading-none whitespace-nowrap anim-hero-watermark">
           {heroData.watermarkText}
         </span>
       </div>
@@ -53,7 +55,7 @@ export function HeroSection() {
           width={800}
           height={1000}
           priority
-          className="portrait-mask h-[80%] sm:h-[87%] lg:h-[94%] w-auto max-w-none object-cover object-top drop-shadow-[0_20px_45px_rgba(0,0,0,0.55)] select-none"
+          className="portrait-mask h-[80%] sm:h-[87%] lg:h-[94%] w-auto max-w-none object-cover object-top drop-shadow-[0_20px_45px_rgba(0,0,0,0.55)] select-none anim-hero-portrait"
         />
       </div>
 
@@ -63,7 +65,7 @@ export function HeroSection() {
         data-scroll-speed="0.08"
         className="absolute left-6 sm:left-10 lg:left-14 top-[32%] sm:top-[34%] max-w-[270px] sm:max-w-[310px] z-30 pointer-events-auto"
       >
-        <div className="flex items-start gap-2">
+        <div className="flex items-start gap-2 anim-hero-manifesto">
           <span
             aria-hidden="true"
             className="text-white/60 text-xs mt-0.5 select-none font-light"
@@ -89,18 +91,20 @@ export function HeroSection() {
         data-scroll-speed="-0.14"
         className="hidden sm:block absolute right-8 sm:right-12 lg:right-14 top-[24%] sm:top-[26%] z-30 pointer-events-auto"
       >
-        <ProjectBadgeCard
-          title={heroData.projectBadge.title}
-          category={heroData.projectBadge.category}
-          image={heroData.projectBadge.image}
-          symbol={heroData.projectBadge.symbol}
-        />
+        <div className="anim-hero-badge">
+          <ProjectBadgeCard
+            title={heroData.projectBadge.title}
+            category={heroData.projectBadge.category}
+            image={heroData.projectBadge.image}
+            symbol={heroData.projectBadge.symbol}
+          />
+        </div>
       </div>
 
       {/* Layer 6: Bottom Container (Foreground Name & Floating "Let's Talk" Card) */}
       <div className="relative z-30 px-6 sm:px-10 lg:px-14 pb-7 sm:pb-9 flex flex-col md:flex-row md:items-end justify-between gap-6">
         {/* Bottom-Left: Copyright & Massive Foreground Name */}
-        <div className="pointer-events-auto">
+        <div className="pointer-events-auto anim-hero-name">
           <span className="block text-white/90 text-xs sm:text-sm font-semibold tracking-wider mb-1">
             {heroData.copyrightYear}
           </span>
@@ -113,7 +117,7 @@ export function HeroSection() {
         <div
           data-scroll
           data-scroll-speed="0.1"
-          className="pointer-events-auto self-end md:self-auto"
+          className="pointer-events-auto self-end md:self-auto anim-hero-contact"
         >
           <ContactCard
             tagline={heroData.contactCard.tagline}
