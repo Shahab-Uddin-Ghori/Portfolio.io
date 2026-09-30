@@ -15,7 +15,7 @@ export function ImpactSection() {
       id="impact"
       aria-label="About and Impact"
       data-scroll-section
-      className="relative z-20 w-full bg-[#fdfdfd] text-[#111111] py-20 sm:py-28 px-6 sm:px-12 lg:px-20 rounded-none shadow-[0_-30px_70px_rgba(0,0,0,0.55)] border-t border-neutral-200 overflow-x-clip"
+      className="deck-section min-h-screen w-full bg-[#fdfdfd] text-[#111111] py-16 sm:py-20 px-6 sm:px-12 lg:px-20 z-20 shadow-[0_-30px_70px_rgba(0,0,0,0.35)] border-t border-neutral-200 overflow-hidden flex flex-col justify-center"
     >
       <div className="max-w-[1360px] mx-auto">
         {/* Top Row: "TRUSTED BY LEADING BRANDS" + Logo Row */}

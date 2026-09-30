@@ -54,13 +54,13 @@ export function WhyChooseSection() {
       ref={sectionRef}
       id="why-choose"
       aria-label="Why Choose Me"
-      className="relative w-full bg-[#fafafa] py-24 sm:py-32 px-4 sm:px-6 lg:px-8 border-t border-neutral-100/80 overflow-hidden"
+      className="deck-section min-h-screen w-full bg-[#fafafa] py-14 sm:py-16 px-4 sm:px-6 lg:px-8 z-[60] shadow-[0_-30px_70px_rgba(0,0,0,0.18)] border-t border-neutral-100/80 overflow-hidden flex flex-col justify-center"
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto w-full">
         {/* ========================================================================= */}
         {/* HEADER: BADGE + 3-LINE HEADING WITH PROGRESSIVE LENS-BLUR FOCUS EFFECT     */}
         {/* ========================================================================= */}
-        <div className="flex flex-col md:flex-row items-start gap-6 md:gap-14 mb-16 sm:mb-20">
+        <div className="flex flex-col md:flex-row items-start gap-6 md:gap-14 mb-10 sm:mb-14">
           {/* Pill Badge */}
           <div className="shrink-0 pt-1.5">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-neutral-100 border border-neutral-200/70 shadow-2xs">

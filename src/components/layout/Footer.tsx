@@ -4,11 +4,13 @@ import React, { useState } from "react";
 import Link from "next/link";
 
 /**
- * Footer component implements the exact editorial layout from Pic 3:
- * 1. Manifesto statement + phone & email contact info
- * 2. Interactive newsletter subscription card
- * 3. 2-column navigation directory & social links
- * 4. Giant bold typography wordmark "Michael ®"
+ * Footer component implements the full-viewport height editorial layout:
+ * 1. min-h-screen: Occupies the full viewport height at the bottom of the page,
+ *    ensuring zero bleed/peek from previous dark sections.
+ * 2. Manifesto statement + phone & email contact info
+ * 3. Interactive newsletter subscription card
+ * 4. 2-column navigation directory & social links
+ * 5. Giant bold typography wordmark "Michael ®"
  */
 export function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState("");
@@ -25,13 +27,13 @@ export function Footer() {
     <footer
       id="footer"
       aria-label="Site Footer"
-      className="relative w-full bg-[#fdfdfd] pt-24 pb-16 px-4 sm:px-6 lg:px-8 border-t border-neutral-100 overflow-hidden"
+      className="deck-section min-h-screen w-full flex flex-col justify-between bg-[#fdfdfd] pt-14 sm:pt-16 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-8 z-[110] shadow-[0_-30px_70px_rgba(0,0,0,0.2)] border-t border-neutral-100 overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl w-full mx-auto flex-1 flex flex-col justify-between">
         {/* ========================================================================= */}
         {/* TOP ROW: MANIFESTO & CONTACT (LEFT) + NEWSLETTER BOX (RIGHT)              */}
         {/* ========================================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-start mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-start pt-4 sm:pt-6 mb-10 sm:mb-14">
           {/* Left Column: Manifesto & Direct Contacts */}
           <div className="flex flex-col justify-between h-full">
             <p className="text-neutral-700 text-sm sm:text-base font-semibold leading-relaxed max-w-lg mb-8">
@@ -91,7 +93,7 @@ export function Footer() {
         {/* ========================================================================= */}
         {/* BOTTOM ROW: NAVIGATION DIRECTORY (LEFT) + GIANT MICHAEL ® (RIGHT)         */}
         {/* ========================================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 items-end pt-12 border-t border-neutral-100">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 items-end pt-10 sm:pt-14 border-t border-neutral-100">
           {/* Left Column: 2 Navigation Columns */}
           <div className="grid grid-cols-2 gap-8 sm:gap-14 max-w-sm">
             {/* Nav Column 1 */}

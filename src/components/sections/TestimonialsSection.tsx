@@ -11,12 +11,12 @@ export function TestimonialsSection() {
     <section
       id="testimonials"
       aria-label="Client Testimonials"
-      className="relative w-full bg-[#fafafa] py-24 sm:py-32 border-t border-neutral-100/80 overflow-hidden"
+      className="deck-section min-h-screen w-full bg-[#fafafa] py-14 sm:py-16 border-t border-neutral-100/80 z-[70] shadow-[0_-30px_70px_rgba(0,0,0,0.18)] overflow-hidden flex flex-col justify-center"
     >
       {/* ========================================================================= */}
       {/* SECTION HEADER: BADGE + TITLE + RIGHT-ALIGNED SUMMARY PARAGRAPH           */}
       {/* ========================================================================= */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-14 sm:mb-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 sm:mb-12 w-full">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 md:gap-12">
           {/* Left Column: Badge + 2-Line Headline */}
           <div className="flex flex-col items-start gap-5">

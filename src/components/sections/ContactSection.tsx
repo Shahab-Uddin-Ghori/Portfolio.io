@@ -66,7 +66,7 @@ export function ContactSection() {
     <section
       id="contact"
       aria-label="Contact Section"
-      className="relative w-full min-h-[680px] bg-neutral-950 overflow-hidden flex items-center justify-center py-24 sm:py-32 px-4 sm:px-6 lg:px-8"
+      className="deck-section min-h-screen w-full bg-neutral-950 py-14 sm:py-16 px-4 sm:px-6 lg:px-8 z-[100] shadow-[0_-40px_90px_rgba(0,0,0,0.65)] overflow-hidden flex items-center justify-center"
     >
       {/* ========================================================================= */}
       {/* ATMOSPHERIC CINEMATIC NEON PORTRAIT BACKGROUND (PIC 2 EXACT MATCH)        */}
