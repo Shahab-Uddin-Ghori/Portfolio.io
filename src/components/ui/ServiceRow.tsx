@@ -68,7 +68,7 @@ export function ServiceRow({ service, index }: ServiceRowProps) {
             <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-xs px-2 py-0.5 rounded-[3px] shadow-xs flex items-center gap-1.5 whitespace-nowrap z-10 pointer-events-none transition-transform duration-300 group-hover:scale-105">
               <span className="w-1.5 h-1.5 rounded-full bg-orange-600" />
               <span className="text-[8.5px] font-bold tracking-widest uppercase text-neutral-800">
-                {service.badgeText}
+                {service.badgeText || service.buttonText || "VIEW CASE"}
               </span>
             </div>
           </div>

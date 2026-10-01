@@ -38,16 +38,16 @@ export interface HeroData {
 
 export const heroData: HeroData = {
   brand: {
-    name: "Portfolioa",
+    name: "Portfoliob",
     trademark: "®",
-    href: "#home",
+    href: "/",
   },
   navLinks: [
-    { title: "Home", href: "#home", active: true },
-    { title: "About", href: "#impact" },
-    { title: "Services", href: "#services", count: "04" },
-    { title: "Work", href: "#work", count: "12" },
-    { title: "Contact", href: "#contact" },
+    { title: "Home", href: "/", active: true },
+    { title: "About", href: "/about" },
+    { title: "Services", href: "/services", count: "05" },
+    { title: "Work", href: "/#projects", count: "12" },
+    { title: "Contact", href: "/#contact" },
   ],
   watermarkText: "MICHAEL",
   foregroundName: "MICHAEL",

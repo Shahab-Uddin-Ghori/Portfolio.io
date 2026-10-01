@@ -105,6 +105,7 @@ export function Footer() {
                 {[
                   { label: "Home", href: "/" },
                   { label: "About Me", href: "/about" },
+                  { label: "Services", href: "/services" },
                   { label: "Blogs", href: "/blogs" },
                   { label: "Contact", href: "/contact" },
                   { label: "404", href: "/not-found" },
