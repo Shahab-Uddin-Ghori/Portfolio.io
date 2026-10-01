@@ -106,11 +106,11 @@ export function ServicesPinnedSection() {
       {/* ===================================================================== */}
       {/* PINNED STAGE VIEWPORT (LOCKED IN PLACE FOR ENTIRE 500vh DURATION)     */}
       {/* ===================================================================== */}
-      <div className="sticky top-0 h-screen w-full bg-[#fdfdfd] overflow-hidden flex flex-col justify-between pt-6 sm:pt-8 pb-8 px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1360px] mx-auto select-none">
+      <div className="sticky top-0 h-screen w-full bg-[#fdfdfd] overflow-hidden flex flex-col justify-start pt-5 sm:pt-7 lg:pt-8 pb-8 px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1360px] mx-auto select-none">
         {/* ------------------------------------------------------------------- */}
         {/* TOP HEADER: BRAND + SERVICES TITLE (ALIGNED WITH EXPLORE ON RIGHT)  */}
         {/* ------------------------------------------------------------------- */}
-        <div className="w-full flex-shrink-0 select-none z-10 mb-4 sm:mb-6">
+        <div className="w-full flex-shrink-0 select-none z-10 mb-5 sm:mb-7 lg:mb-9">
           {/* Small Top Tag */}
           <div className="text-[10px] sm:text-xs font-bold tracking-[0.2em] text-neutral-900 uppercase mb-1">
             {heroHeadline.tagline}
@@ -118,7 +118,7 @@ export function ServicesPinnedSection() {
 
           {/* Title + Card Counter & Controls (Baseline Aligned) */}
           <div className="flex items-baseline justify-between w-full gap-4">
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.2vw] font-black tracking-tighter leading-none uppercase font-sans text-neutral-950">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.8vw] font-black tracking-tighter leading-none uppercase font-sans text-neutral-950">
               {heroHeadline.title}
             </h1>
 
@@ -163,9 +163,9 @@ export function ServicesPinnedSection() {
         </div>
 
         {/* ------------------------------------------------------------------- */}
-        {/* CARDS CONTAINER: STACKING DECK (PERFECT VIEWPORT FIT & ZERO ARTIFACT)*/}
+        {/* CARDS CONTAINER: REDUCED WIDTH (MAX-W-[920px]) & ORANGE HERO THEME */}
         {/* ------------------------------------------------------------------- */}
-        <div className="relative w-full max-w-[1080px] mx-auto h-[380px] sm:h-[400px] lg:h-[420px] overflow-hidden rounded-[22px] sm:rounded-[26px]">
+        <div className="relative w-full max-w-[920px] mx-auto h-[360px] sm:h-[380px] lg:h-[400px] mt-2 sm:mt-4 lg:mt-5 overflow-hidden rounded-[24px] sm:rounded-[28px] shadow-[0_25px_60px_rgba(219,56,2,0.25)]">
           {services.map((service, index) => {
             const zIndex = 20 + index * 10;
             const cardTransform = getCardTransform(index);
@@ -178,38 +178,38 @@ export function ServicesPinnedSection() {
                   transform: cardTransform,
                   willChange: "transform",
                 }}
-                className="absolute inset-0 bg-white border border-neutral-200/90 rounded-[22px] sm:rounded-[26px] p-4 sm:p-5 lg:p-6 shadow-[0_16px_50px_rgba(0,0,0,0.09)] flex flex-col justify-between overflow-hidden transition-shadow duration-300"
+                className="absolute inset-0 hero-canvas border border-white/20 rounded-[24px] sm:rounded-[28px] p-4 sm:p-5 lg:p-6 text-white flex flex-col justify-between overflow-hidden transition-shadow duration-300 shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
               >
                 {/* ----------------------------------------------------------- */}
                 {/* TOP SECTION: NUMBER + TITLE (LEFT) & HEADLINE + BUTTON (RIGHT)*/}
                 {/* ----------------------------------------------------------- */}
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.35fr] gap-4 lg:gap-8 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.35fr] gap-3.5 lg:gap-6 items-start relative z-10">
                   {/* Left Column */}
                   <div className="flex flex-col items-start">
-                    <div className="flex items-center gap-1.5 text-xs font-bold tracking-widest text-neutral-800 uppercase mb-1">
-                      <span className="text-[#ea580c] font-bold text-sm leading-none">✱</span>
+                    <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-bold tracking-widest text-white/90 uppercase mb-0.5">
+                      <span className="text-white font-bold text-sm leading-none">✱</span>
                       <span>{service.number}</span>
                     </div>
 
-                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-[#ea580c] leading-[0.95] select-none font-sans">
+                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-white leading-[0.95] select-none font-sans drop-shadow-sm">
                       {service.title}
                     </h2>
                   </div>
 
                   {/* Right Column */}
                   <div className="flex flex-col items-start">
-                    <p className="text-xs sm:text-sm lg:text-base font-black uppercase tracking-tight text-neutral-900 leading-snug mb-2 max-w-lg select-none">
+                    <p className="text-xs sm:text-[13px] lg:text-sm font-black uppercase tracking-tight text-white/95 leading-snug mb-2 max-w-lg select-none">
                       {service.headline}
                     </p>
 
                     <Link
                       href={service.buttonHref || "/#projects"}
-                      className="group inline-flex items-center rounded-sm bg-[#ececec] hover:bg-neutral-300 transition-colors pl-3 pr-1 py-1 shadow-2xs cursor-pointer"
+                      className="group inline-flex items-center rounded-[6px] bg-white text-neutral-950 hover:bg-neutral-200 transition-colors pl-2.5 pr-1.5 py-1 shadow-sm cursor-pointer"
                     >
-                      <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-neutral-900 mr-2">
+                      <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-neutral-950 mr-2">
                         {service.buttonText}
                       </span>
-                      <span className="w-5 h-5 rounded-xs bg-[#ea580c] text-white flex items-center justify-center font-bold text-xs transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                      <span className="w-4.5 h-4.5 rounded-[4px] bg-[#ea580c] text-white flex items-center justify-center font-bold text-[10px] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                         ↗
                       </span>
                     </Link>
@@ -217,31 +217,73 @@ export function ServicesPinnedSection() {
                 </div>
 
                 {/* ----------------------------------------------------------- */}
-                {/* BOTTOM SECTION: IMAGE (LEFT) & PILL TAGS (RIGHT)            */}
+                {/* BOTTOM SECTION: IMAGE (LEFT), TAGS (MIDDLE), LET'S TALK (RIGHT) */}
                 {/* ----------------------------------------------------------- */}
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.35fr] gap-4 lg:gap-8 items-end pt-2 border-t border-neutral-100">
-                  {/* Left Column: Image Preview */}
-                  <div className="relative w-full max-w-[300px] h-[105px] sm:h-[115px] lg:h-[125px] rounded-xl overflow-hidden bg-neutral-100 shadow-xs border border-neutral-200/80 group">
+                <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 pt-2.5 border-t border-white/15 relative z-10">
+                  {/* Left: Image Preview */}
+                  <div className="relative w-full max-w-[200px] sm:max-w-[220px] lg:max-w-[240px] h-[85px] sm:h-[95px] lg:h-[105px] rounded-xl overflow-hidden bg-black/20 shadow-md border border-white/20 group flex-shrink-0">
                     <Image
                       src={service.image}
                       alt={service.title}
                       fill
-                      sizes="(max-width: 768px) 100vw, 300px"
+                      sizes="(max-width: 768px) 100vw, 240px"
                       className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-300" />
+                    <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
                   </div>
 
-                  {/* Right Column: Skill Pills */}
-                  <div className="flex flex-wrap gap-1.5">
+                  {/* Middle: Skill Pills */}
+                  <div className="flex flex-wrap gap-1.5 flex-1 max-w-[340px] py-0.5">
                     {service.tags.map((tag, tagIdx) => (
                       <span
                         key={tagIdx}
-                        className="bg-[#f4f4f4] hover:bg-neutral-900 hover:text-white text-neutral-800 text-[10px] sm:text-[11px] font-semibold px-2.5 py-1 rounded-md transition-colors duration-200 cursor-default"
+                        className="bg-black/25 backdrop-blur-sm border border-white/10 hover:bg-white hover:text-neutral-950 text-white text-[9px] sm:text-[10px] font-semibold px-2 py-0.5 rounded-sm transition-colors duration-200 cursor-default"
                       >
                         {tag}
                       </span>
                     ))}
+                  </div>
+
+                  {/* Right: Floating Let's Talk Badge (Matching Screenshot 2) */}
+                  <div className="flex-shrink-0 bg-[#141416]/95 backdrop-blur-md border border-white/15 rounded-[16px] p-2 sm:p-2.5 shadow-[0_12px_30px_rgba(0,0,0,0.5)] flex items-center gap-2.5">
+                    {/* Avatar */}
+                    <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-[9px] overflow-hidden bg-neutral-800 flex-shrink-0 border border-white/15">
+                      <Image
+                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
+                        alt="Michael"
+                        fill
+                        sizes="36px"
+                        className="object-cover"
+                      />
+                    </div>
+
+                    {/* Bio text */}
+                    <div className="pr-1">
+                      <div className="flex items-center justify-between gap-1.5">
+                        <span className="text-[8.5px] text-white/50 font-bold uppercase tracking-wider leading-none">
+                          LET&apos;S TALK
+                        </span>
+                        <span className="text-white/35 text-[8px]">✱</span>
+                      </div>
+                      <h4 className="text-[11.5px] sm:text-xs font-bold text-white leading-tight">Michael</h4>
+                      <p className="text-[9px] text-white/60 font-normal leading-tight">UI/UX Designer</p>
+                    </div>
+
+                    {/* Arrow Button */}
+                    <Link
+                      href="/#contact"
+                      aria-label="Open contact form"
+                      className="w-7 h-7 rounded-[8px] bg-white text-black flex items-center justify-center hover:bg-neutral-200 transition-colors flex-shrink-0 group"
+                    >
+                      <svg
+                        className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M7 17L17 7M17 7H9M17 7V15" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </div>
