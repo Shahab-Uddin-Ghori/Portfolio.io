@@ -24,7 +24,7 @@ export function Header({ theme = "orange" }: HeaderProps) {
 
   const headerBgClass =
     theme === "orange"
-      ? "bg-[#ea580c] text-white"
+      ? "hero-canvas text-white border-b border-white/15 shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
       : theme === "dark"
       ? "bg-[#090403] text-white border-b border-white/10"
       : "bg-transparent text-neutral-900";
@@ -32,12 +32,54 @@ export function Header({ theme = "orange" }: HeaderProps) {
   return (
     <>
       <header
-        className={`w-full px-6 sm:px-10 lg:px-14 py-4 sm:py-5 flex items-center justify-between transition-colors duration-300 relative z-50 ${headerBgClass}`}
+        className={`w-full px-6 sm:px-10 lg:px-14 py-4 sm:py-5 flex items-center justify-between transition-colors duration-300 relative z-50 overflow-hidden ${headerBgClass}`}
       >
+        {/* Subtle Crosshairs for Orange Theme (No Grid Lines) */}
+        {theme === "orange" && (
+          <>
+            <span
+              aria-hidden="true"
+              className="absolute top-2.5 left-6 sm:left-10 text-white/30 text-xs font-light select-none pointer-events-none z-10"
+            >
+              +
+            </span>
+            <span
+              aria-hidden="true"
+              className="absolute top-2.5 left-1/3 text-white/18 text-xs font-light select-none pointer-events-none z-10 hidden sm:inline"
+            >
+              +
+            </span>
+            <span
+              aria-hidden="true"
+              className="absolute top-2.5 right-1/3 text-white/18 text-xs font-light select-none pointer-events-none z-10 hidden sm:inline"
+            >
+              +
+            </span>
+            <span
+              aria-hidden="true"
+              className="absolute top-2.5 right-6 sm:right-10 text-white/30 text-xs font-light select-none pointer-events-none z-10"
+            >
+              +
+            </span>
+            <span
+              aria-hidden="true"
+              className="absolute bottom-2 left-6 sm:left-10 text-white/30 text-xs font-light select-none pointer-events-none z-10"
+            >
+              +
+            </span>
+            <span
+              aria-hidden="true"
+              className="absolute bottom-2 right-6 sm:right-10 text-white/30 text-xs font-light select-none pointer-events-none z-10"
+            >
+              +
+            </span>
+          </>
+        )}
+
         {/* Brand Name */}
         <Link
           href="/"
-          className="flex items-center gap-0.5 font-bold text-lg sm:text-xl tracking-tight hover:opacity-90 transition-opacity select-none"
+          className="flex items-center gap-0.5 font-bold text-lg sm:text-xl tracking-tight hover:opacity-90 transition-opacity select-none relative z-20"
         >
           <span>Portfoliob</span>
           <span className="text-xs -mt-2 font-normal">®</span>
@@ -46,7 +88,7 @@ export function Header({ theme = "orange" }: HeaderProps) {
         {/* Desktop Nav Links */}
         <nav
           aria-label="Subpage Navigation"
-          className="hidden md:flex items-center gap-8 lg:gap-12 text-[13px] font-semibold tracking-normal"
+          className="hidden md:flex items-center gap-8 lg:gap-12 text-[13px] font-semibold tracking-normal relative z-20"
         >
           {navLinks.map((link) => {
             const isActive = pathname === link.href;

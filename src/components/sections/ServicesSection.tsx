@@ -17,20 +17,20 @@ export function ServicesSection() {
       <div className="max-w-6xl mx-auto w-full">
         {/* Header Block with in-view entrance */}
         <div>
-          {/* Top Tagline Pill: "✱ OUR SERVICES" */}
+          {/* Top Tagline Pill: "✱ BETTER DIGITAL JOURNEYS." */}
           <SlideInView direction="up" distance="30px" delay={0.05}>
             <div className="inline-flex items-center gap-1.5 bg-[#f0eae1] px-3 py-1 rounded-sm text-[10.5px] font-bold tracking-widest text-neutral-800 uppercase mb-4 sm:mb-5">
               <span className="text-orange-600 text-xs">✱</span>
-              <span>{servicesData.tagline}</span>
+              <span>BETTER DIGITAL JOURNEYS.</span>
             </div>
           </SlideInView>
 
           {/* Giant Header */}
           <SlideInView direction="up" distance="40px" delay={0.12}>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[0.98] uppercase font-sans text-neutral-950 mb-8 sm:mb-10">
-              {servicesData.headline.line1}
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[0.98] uppercase font-sans mb-8 sm:mb-10">
+              <span className="text-neutral-950">{servicesData.headline.line1}</span>
               <br />
-              {servicesData.headline.line2}
+              <span className="text-neutral-900">{servicesData.headline.line2}</span>
               <br />
               <span className="text-neutral-400">{servicesData.headline.line3}</span>
             </h2>

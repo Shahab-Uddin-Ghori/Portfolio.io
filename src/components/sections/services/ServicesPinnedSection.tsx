@@ -92,6 +92,16 @@ export function ServicesPinnedSection() {
     return `translate3d(0, ${y.toFixed(2)}%, 0)`;
   };
 
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Trigger initial entrance animations on mount
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 60);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section
       ref={sectionRef}
@@ -108,27 +118,53 @@ export function ServicesPinnedSection() {
       {/* ===================================================================== */}
       <div className="sticky top-0 h-screen w-full bg-[#fdfdfd] overflow-hidden flex flex-col justify-start pt-5 sm:pt-7 lg:pt-8 pb-8 px-4 sm:px-8 lg:px-12 xl:px-16 max-w-[1360px] mx-auto select-none">
         {/* ------------------------------------------------------------------- */}
-        {/* TOP HEADER: BRAND + SERVICES TITLE (ALIGNED WITH EXPLORE ON RIGHT)  */}
+        {/* TOP HEADER: BRAND + SERVICES TITLE (BLACK/GREY COMBO) + CONTROLS    */}
         {/* ------------------------------------------------------------------- */}
-        <div className="w-full flex-shrink-0 select-none z-10 mb-5 sm:mb-7 lg:mb-9">
-          {/* Small Top Tag */}
-          <div className="text-[10px] sm:text-xs font-bold tracking-[0.2em] text-neutral-900 uppercase mb-1">
-            {heroHeadline.tagline}
+        <div className="w-full flex-shrink-0 select-none z-10 mb-4 sm:mb-6 lg:mb-7">
+          {/* Small Top Pill Tag matching Reference Image */}
+          <div
+            className={`inline-flex items-center gap-1.5 bg-[#f0eae1] px-3 py-1 rounded-sm text-[10.5px] font-bold tracking-widest text-neutral-800 uppercase mb-2 sm:mb-2.5 transition-all duration-700 ease-out ${
+              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
+            }`}
+          >
+            <span className="text-[#ea580c] text-xs leading-none">✱</span>
+            <span>BETTER DIGITAL JOURNEYS.</span>
           </div>
 
           {/* Title + Card Counter & Controls (Baseline Aligned) */}
-          <div className="flex items-baseline justify-between w-full gap-4">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.8vw] font-black tracking-tighter leading-none uppercase font-sans text-neutral-950">
-              {heroHeadline.title}
-            </h1>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between w-full gap-3 sm:gap-6">
+            <div
+              className={`relative flex items-center gap-4 transition-all duration-700 delay-100 ease-out ${
+                isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+            >
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.9vw] font-black tracking-tight leading-[0.94] uppercase font-sans">
+                <span className="text-neutral-950">MY SERVICES </span>
+                <span className="text-neutral-900">THROUGH </span>
+                <br className="hidden sm:block" />
+                <span className="text-neutral-400">USER </span>
+                <span className="text-neutral-300">EXPERIENCE</span>
+              </h1>
 
-            <div className="flex items-center gap-4 ml-auto pb-1">
+              {/* Subtle 8-point Starburst Icon matching Reference Screenshot */}
+              <div className="hidden lg:flex items-center justify-center opacity-30 text-neutral-400 pl-2">
+                <svg className="w-10 h-10" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M11 2h2v7h-2zm0 13h2v7h-2zm9-4v2h-7v-2zm-13 0v2H0v-2zm12.364-7.778l1.414 1.414-4.95 4.95-1.414-1.414zm-9.192 9.192l1.414 1.414-4.95 4.95-1.414-1.414zm10.606 4.95l-1.414 1.414-4.95-4.95 1.414-1.414zm-9.192-9.192l-1.414 1.414-4.95-4.95 1.414-1.414z" />
+                </svg>
+              </div>
+            </div>
+
+            <div
+              className={`flex items-center gap-4 ml-auto sm:ml-0 pb-1 flex-shrink-0 transition-all duration-700 delay-200 ease-out ${
+                isLoaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
+              }`}
+            >
               {/* Live 01 / 05 Progress indicator driven by scroll */}
               <div className="text-[11px] sm:text-xs font-semibold tracking-wider text-neutral-500 uppercase flex items-center gap-1.5 whitespace-nowrap">
                 <span className="font-bold text-[#ea580c]">0{currentActiveIndex + 1}</span>
                 <span className="text-neutral-400">/</span>
                 <span className="font-medium text-neutral-500">0{totalCards}</span>
-                <span className="hidden sm:inline-block ml-1 text-neutral-400">{heroHeadline.exploreText}</span>
+                <span className="hidden md:inline-block ml-1 text-neutral-400">{heroHeadline.exploreText}</span>
               </div>
 
               {/* Micro Navigation Click Arrows */}
@@ -165,7 +201,11 @@ export function ServicesPinnedSection() {
         {/* ------------------------------------------------------------------- */}
         {/* CARDS CONTAINER: REDUCED WIDTH (MAX-W-[920px]) & ORANGE HERO THEME */}
         {/* ------------------------------------------------------------------- */}
-        <div className="relative w-full max-w-[920px] mx-auto h-[360px] sm:h-[380px] lg:h-[400px] mt-2 sm:mt-4 lg:mt-5 overflow-hidden rounded-[24px] sm:rounded-[28px] shadow-[0_25px_60px_rgba(219,56,2,0.25)]">
+        <div
+          className={`relative w-full max-w-[920px] mx-auto h-[360px] sm:h-[380px] lg:h-[400px] mt-2 sm:mt-4 lg:mt-5 overflow-hidden rounded-[24px] sm:rounded-[28px] shadow-[0_25px_60px_rgba(219,56,2,0.25)] transition-all duration-1000 delay-300 ease-out ${
+            isLoaded ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-[0.97]"
+          }`}
+        >
           {services.map((service, index) => {
             const zIndex = 20 + index * 10;
             const cardTransform = getCardTransform(index);
